@@ -1,0 +1,55 @@
+.article {
+
+}
+
+.block {
+  position: relative;
+  overflow: hidden;
+}
+
+blockquote {
+  font-weight: bold;
+  font-size: 24pt;
+  padding: 30px 0;
+}
+
+.block-image {
+  width: 100vw;
+  background: blue;
+  height: 900px;
+
+  .block-title {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 50pt;
+    color: white;
+  }
+
+  .block-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.block-color {
+  padding: 150px 0;
+  background: rgb(67, 51, 255);
+
+  .block-content {
+    color: white;
+  }
+}
+
+.block-blank {
+  padding: 150px 0;
+}

@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "main.js": {
+      "files": [
+        "scripts/modernizr.js",
+        "../node_modules/barba.js/dist/barba.js",
+        "../node_modules/gsap/src/minified/TweenMax.min.js",
+        "../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js",
+        "../node_modules/lazysizes/lazysizes.js",
+        "../node_modules/smooth-scrollbar/dist/smooth-scrollbar.js",
+        "scripts/main.js"
+
+      ],
+      "main": true
+    },
+    "main.css": {
+      "files": [
+        "styles/main.scss"
+      ],
+      "main": true
+    },
+    "customizer.js": {
+      "files": [
+        "scripts/customizer.js"
+      ]
+    },
+    "jquery.js": {
+      "bower": ["jquery"]
+    }
+  },
+  "config": {
+    "devUrl": "http://zissou.wp"
+  }
+}
