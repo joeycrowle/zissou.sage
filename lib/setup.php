@@ -112,5 +112,11 @@ function assets() {
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
 
+function mime_types($mime_types){
+    $mime_types['webp'] = 'image/webp';
+    return $mime_types;
+}
+add_filter('upload_mimes', __NAMESPACE__ . '\\mime_types', 1, 1);
+
 
 define('CONCATENATE_SCRIPTS', false);
