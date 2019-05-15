@@ -22,6 +22,7 @@
 /*~~~~~~~~~~~~~~~~~
 VARS
 ~~~~~~~~~~~~~~~~~*/
+
         var issue = 0;
         var initialized = false;
         var currentFont = null;
@@ -44,6 +45,8 @@ VARS
 /*~~~~~~~~~~~~~~~~~
 MENU
 ~~~~~~~~~~~~~~~~~*/
+        var menuIsViewingIssues = true;
+
         const burgerDefault = {
           stroke1: {
             x: 0,
@@ -110,15 +113,53 @@ MENU
           TweenLite.to($('header'), 0.85, {ease: Power3.easeInOut, height: '100%', onComplete: function(){
             burgerX();
             TweenLite.to($('header .inner'), 0.4, {backgroundColor: String(issueStyle.primary)});
+
+            //SHOW .NAV-CONTENT
+            $('.nav-content').css({
+              opacity: 0,
+              display: 'block'
+            });
+            TweenLite.fromTo('.nav-content', 1.5, {y: 130, opacity: 0, skewY: 3}, {y: 0, opacity: 1, skewY: 0, ease: Power3.easeOut, delay: .4});
+
+
           }});
         }
 
         function closeMenu() {
-          TweenLite.to($('header'), 0.85, {ease: Power3.easeInOut, height: headerHeight+'px', onComplete: function(){
+          TweenLite.to($('.nav-content'), 0.3, {opacity: 0});
+          TweenLite.to($('header'), 0.85, {ease: Power3.easeInOut, height: headerHeight+'px', delay: 0.3, onComplete: function(){
             menuIsOpen = false;
             burgerDef();
             TweenLite.to($('header .inner'), 0.4, {backgroundColor: String(headerDefaultColour)});
+            $('.nav-content').css('opacity', 0);
           }});
+          setTimeout(function(){
+            $('.nav-content').css('display', 'none');
+          },300);
+        }
+
+        function switchMenuView() {
+          if(menuIsViewingIssues) {
+            TweenLite.to('.recent-issues', .5, {opacity: 0, onComplete(){
+              $('.recent-issues').css('display', 'none');
+              $('.pages').css('display', 'block');
+              TweenLite.fromTo('.pages', 1, {opacity: 0, y: 30, skewY: 1}, {opacity: 1, skewY: 0, scaleY: 1, y: 0});
+              menuIsViewingIssues = !menuIsViewingIssues;
+              toggleMenuViewBtn();
+            }});
+          } else {
+            TweenLite.to('.pages', .5, {opacity: 0, onComplete(){
+              $('.recent-issues').css('display', 'block');
+              $('.pages').css('display', 'none');
+              TweenLite.fromTo('.recent-issues', 1, {opacity: 0, y: 30, skewY: 1}, {opacity: 1, skewY: 0, scaleY: 1, y: 0});
+              menuIsViewingIssues = !menuIsViewingIssues;
+              toggleMenuViewBtn();
+            }});
+          }
+        }
+
+        function toggleMenuViewBtn() {
+          $('.switch-view #pages, .switch-view #issues').toggleClass('view-btn-select');
         }
 
         function checkDimensions() {
@@ -145,6 +186,9 @@ MENU
           } else{
             closeMenu();
           }
+        });
+        $('.switch-view a').click(function(){
+          switchMenuView();
         });
 
         if(!Modernizr.touchevents) {
@@ -251,6 +295,7 @@ INIT SCRIPTS
             }
             //////
           }
+
           customizePreviews();
           $('.issue-num').text('Issue: '+issue);
           //FIX BODY CLASSES

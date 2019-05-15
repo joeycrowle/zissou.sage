@@ -8,61 +8,66 @@ header {
     background: rgba(#221f20, 1);
     width: 100%;
     height: 100%;
-  }
-
-  .container {
+    overflow: hidden;
     display: flex;
-    flex-direction: row !important;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     padding: 25px;
-  }
-}
 
+    .nav-header {
+      display: flex;
+      flex-direction: row !important;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 43px;
 
-.burger {
-  position: relative;
-  width: 30px;
-  height: 19px;
-  cursor: pointer;
+      .burger {
+        position: relative;
+        width: 30px;
+        height: 19px;
+        cursor: pointer;
 
-  .stroke {
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    background: white;
+        .stroke {
+          position: absolute;
+          width: 100%;
+          height: 4px;
+          background: white;
 
-    &:last-child {
-      bottom: 0;
+          &:last-child {
+            bottom: 0;
+          }
+        }
+      }
+
+      .brand {
+        display: inline-block;
+        height: auto;
+
+        #zissou-logo {
+          width: 100px !important;
+          height: auto !important;
+
+          .logo-path {
+            fill: white;
+          }
+        }
+      }
+
+      .search {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+
+        .circle {
+          width: 100%;
+          height: 100%;
+          border: 4px solid white;
+          border-radius: 50%;
+        }
+      }
     }
-  }
-}
 
-
-.search {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-
-  .circle {
-    width: 100%;
-    height: 100%;
-    border: 4px solid white;
-    border-radius: 50%;
-  }
-}
-
-
-.brand {
-  display: inline-block;
-  height: auto;
-
-  #zissou-logo {
-    width: 100px !important;
-    height: auto !important;
-
-    .logo-path {
-      fill: white;
+    .nav-content {
+      flex: 1;
     }
   }
 }

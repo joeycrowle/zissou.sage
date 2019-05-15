@@ -1,7 +1,7 @@
 <header class="banner">
   <div class="inner">
-    
-    <div class="container">
+
+    <div class="nav-header container">
       <div class="burger">
         <div class="stroke"></div>
         <div class="stroke"></div>
@@ -12,8 +12,10 @@
       <div class="search">
         <div class="circle"></div>
       </div>
-
     </div>
+
+    <?php get_template_part('templates/nav-content') ?>
+
   </div>
 
 </header>

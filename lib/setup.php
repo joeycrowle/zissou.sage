@@ -36,6 +36,8 @@ function setup() {
   // http://codex.wordpress.org/Function_Reference/add_image_size
   add_theme_support('post-thumbnails');
 
+  add_theme_support('align-wide');
+
   // Enable post formats
   // http://codex.wordpress.org/Post_Formats
   add_theme_support('post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio']);
@@ -49,6 +51,15 @@ function setup() {
   add_editor_style(Assets\asset_path('styles/main.css'));
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
+
+
+function enqueue_editor_scripts() {
+
+    wp_enqueue_script('admin/js', Assets\asset_path('scripts/editor.js'));
+}
+
+add_action('admin_enqueue_scripts', __NAMESPACE__ . '\\enqueue_editor_scripts');
+
 
 /**
  * Register sidebars

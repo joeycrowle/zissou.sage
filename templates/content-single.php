@@ -1,10 +1,11 @@
 <?php
+// ARTICLE PAGE
+
 Use Roots\Sage\Extras;
 
-the_content();
-include('row-builder.php');
-get_template_part('templates/article-nav');
+if(have_posts()) : while(have_posts()) : the_post();
+  echo the_content();
+endwhile;
+endif;
 
 ?>
-
-<h1 class="font-primary"><?php echo the_title(); ?></h1>

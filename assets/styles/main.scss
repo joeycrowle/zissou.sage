@@ -5,7 +5,7 @@
 @import "../../bower_components/bootstrap/scss/bootstrap.scss";
 // endbower
 
-@import "../../node_modules/slick-carousel/slick/slick";
+@import "../../node_modules/slick-carousel/slick/slick.scss";
 
 @import "common/global";
 @import "common/typography";
@@ -15,6 +15,7 @@
 @import "components/grid";
 @import "components/wp-classes";
 @import "layouts/header";
+@import "layouts/nav-content";
 @import "layouts/sidebar";
 @import "layouts/footer";
 @import "layouts/pages";

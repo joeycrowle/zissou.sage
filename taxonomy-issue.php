@@ -1,8 +1,16 @@
-<?php Use Roots\Sage\Extras; ?>
+<?php
+// ISSUE PAGE
+Use Roots\Sage\Extras;
+?>
 
 <div class="articles">
-<?php if(have_posts()) : while(have_posts()) : the_post();
-    get_template_part('templates/issue');
+<?php
+
+
+if(have_posts()) : while(have_posts()) : the_post();
+
+    
+    //get_template_part('templates/issue');
   endwhile; ?>
 </div>
 
