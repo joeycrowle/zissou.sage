@@ -117,6 +117,7 @@ function assets() {
   //global $post;
   wp_localize_script( 'sage/js', 'wpObject', array(
    'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+   'themeLocation' => get_template_directory_uri(),
    'currentIssue' => get_option('mag_current_issue')
    //'postId' => $post->ID
   ));

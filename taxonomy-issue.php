@@ -8,9 +8,7 @@ Use Roots\Sage\Extras;
 
 
 if(have_posts()) : while(have_posts()) : the_post();
-
-    
-    //get_template_part('templates/issue');
+    get_template_part('templates/article-cover');
   endwhile; ?>
 </div>
 

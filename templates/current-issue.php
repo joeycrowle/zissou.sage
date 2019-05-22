@@ -19,7 +19,7 @@ $posts = get_posts($query); ?>
 
 <div class="articles">
 <?php if($query->have_posts()) : while($query->have_posts()) : $query->the_post();
-  get_template_part('templates/issue');
+  get_template_part('templates/article-cover');
 endwhile;
 endif;
 ?>

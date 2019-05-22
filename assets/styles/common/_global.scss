@@ -19,6 +19,7 @@ body, .wrap, .main, #barba-wrapper{
 
 .wrap {
   height: 100vh;
+  //margin-top: 100px;
   overflow-y: auto;
 }
 
@@ -29,6 +30,27 @@ body, .wrap, .main, #barba-wrapper{
 
 .main {
   padding-top: 300px;
+  opacity: 0;
+}
+
+#global-preloader {
+  display: none;
+  opacity: 0;
+  background: white;
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%,-50%,0);
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: -1px 15px 30px -5px rgba(0,0,0, 0.3);
+  z-index: 999;
+
+  #global-preloader-animation {
+    display: block;
+  }
 }
 
 ::selection {

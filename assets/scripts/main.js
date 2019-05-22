@@ -19,14 +19,15 @@
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
+
 /*~~~~~~~~~~~~~~~~~
 VARS
 ~~~~~~~~~~~~~~~~~*/
-
         var issue = 0;
         var initialized = false;
         var currentFont = null;
         var issueStyle = {};
+        var lastFont = '';
         var isMobile = () => {
           if($(window).width() > 512) {
             return false;
@@ -43,8 +44,37 @@ VARS
         const Scrollbar = window.Scrollbar;
 
 /*~~~~~~~~~~~~~~~~~
+PRELOADER
+~~~~~~~~~~~~~~~~~*/
+
+        function preloading(bool) {
+          if(bool) {
+            console.log('preloading...');
+            $('#global-preloader').css('display', 'block');
+            TweenLite.fromTo('#global-preloader', 0.4, {opacity: 0, y: 30}, {opacity: 1, y: 0});
+          }else {
+            TweenLite.to('#global-preloader', 0.2, {opacity: 0, y: 30, onComplete(){
+              $('#global-preloader').css('display', 'none');
+            }});
+          }
+        }
+
+/*~~~~~~~~~~~~~~~~~
+BODYMOVIN
+~~~~~~~~~~~~~~~~~*/
+
+      bodymovin.loadAnimation({
+        container: document.getElementById('global-preloader-animation'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        animationData: window.preloaderAnimation
+      });
+
+/*~~~~~~~~~~~~~~~~~
 MENU
 ~~~~~~~~~~~~~~~~~*/
+
         var menuIsViewingIssues = true;
 
         const burgerDefault = {
@@ -119,7 +149,7 @@ MENU
               opacity: 0,
               display: 'block'
             });
-            TweenLite.fromTo('.nav-content', 1.5, {y: 130, opacity: 0, skewY: 3}, {y: 0, opacity: 1, skewY: 0, ease: Power3.easeOut, delay: .4});
+            TweenLite.fromTo('.nav-content', 1, {y: 30, opacity: 0, skewY: 1}, {y: 0, opacity: 1, skewY: 0, delay: .4});
 
 
           }});
@@ -187,6 +217,7 @@ MENU
             closeMenu();
           }
         });
+
         $('.switch-view a').click(function(){
           switchMenuView();
         });
@@ -229,16 +260,19 @@ CONTROL ISSUE STYLE
             classlist = $(this).attr('class').split(' ');
             $el = $(this);
             $.each(classlist, function(index, item) {
-              if(/font__./.test(item)) {
-                $el.removeClass(String(this));
+              if (item == lastFont) {
+                $el.removeClass(String(item));
               }
             });
           });
+          lastFont = font;
           $('.font-primary').addClass(font);
         }
 
+
+
 /*~~~~~~~~~~~~~~~~~~~~
-ARTICLE PREVIEW STYLE
+ARTICLE PREVIEW
 ~~~~~~~~~~~~~~~~~~~~*/
 
 function customizePreviews() {
@@ -247,6 +281,7 @@ function customizePreviews() {
       var attr = $(this).attr('data-preview-color');
       if (typeof attr !== typeof undefined && attr !== false) {
         var color = $(this).data('preview-color');
+        console.log(color);
       } else {
         var color = issueStyle.primary;
       }
@@ -259,15 +294,25 @@ function customizePreviews() {
   }
 }
 
-
-
 /*~~~~~~~~~~~~~~~~~
 INIT SCRIPTS
 ~~~~~~~~~~~~~~~~~*/
+/*
         function initScripts() {
-          //CONTROL ISSUE
           if(!initialized) {
             //FIRST LOAD
+            console.log('first load');
+            TweenLite.to('.banner', 0.3, {opacity: 1});
+            preloading(true);
+
+            $('.main').imagesLoaded(function(){
+              TweenLite.to('.main', 0.4, {opacity: 1, delay: 1});
+              setTimeout(function(){
+                preloading(false);
+                transitionVisibleScrollElements();
+              },1000);
+            });
+
             initialized = true;
             if($('fields').data('issue') != '') {
               issue = $('fields').data('issue');
@@ -275,27 +320,30 @@ INIT SCRIPTS
               issue = wpObject.currentIssue;
             }
             issueStyle = $('fields').data();
-            console.log(issueStyle);
             setFonts();
             ////////////
           }else {
             //AJAX
+            console.log('ajax');
             if($('fields').data('issue') !== '') {
               newIssue = $('fields').data('issue');
+              console.log($('fields').data());
               if(newIssue !== issue) {
                 issue = newIssue;
                 //ISSUE CHANGED
-                issueStyle = $('fields').data()
+                console.log('case2');
+                issueStyle = $('fields').data();
                 setFonts();
               }else {
+                console.log('case3');
                 setFonts();
               }
             }else {
+              console.log('case4');
               setFonts();
             }
-            //////
           }
-
+          initScrollMagic();
           customizePreviews();
           $('.issue-num').text('Issue: '+issue);
           //FIX BODY CLASSES
@@ -303,7 +351,47 @@ INIT SCRIPTS
           $('classes').remove();
         }
         initScripts();
+*/
 
+        function checkIssue() {
+          if (!initialized) {
+            //First Load
+            console.log('first load');
+            if($('fields').data('issue') !== '') {
+              issue = $('fields').data('issue');
+            }else {
+              issue = wpObject.currentIssue;
+            }
+          }else {
+            //Not First Load
+            console.log('not first load');
+            var newIssue = $('fields').data('issue');
+            if(newIssue !== issue) {
+              issue = newIssue;
+              issueStyle = $('fields').data();
+            }
+          }
+          issueStyle = $('fields').data();
+        }
+
+        function firstLoad() {
+          preloading(true);
+          initialized = true;
+          TweenLite.to('.banner', 0.3, {opacity: 1});
+          $('.main').imagesLoaded(()=> {
+            preloading(false);
+            TweenLite.to('.main', 0.3, {opacity: 1});
+          });
+        }
+
+        function initialize(){
+          console.log('initialize');
+            if(!initialized){firstLoad()}
+            initScrollMagic();
+            checkIssue();
+            setFonts();
+        }
+        initialize();
 /*~~~~~~~~~~~~~~~~~
 BARBA CONFIG
 ~~~~~~~~~~~~~~~~~*/
@@ -319,21 +407,26 @@ BARBA CONFIG
 
           fadeOut: function() {
             var deferred = Barba.Utils.deferred();
+
             TweenLite.to(this.oldContainer, 0.4, {autoAlpha: 0, onComplete: function(){
               deferred.resolve();
+              preloading(true);
             }});
             return deferred.promise;
           },
 
           fadeIn: function() {
-            this.done();
-            initScripts();
-            var $newContainer = $(this.newContainer);
-            $newContainer.css({
-              'opacity': 0,
-              'visibility': 'hidden'
+            $('.main').imagesLoaded(() => {
+              this.done();
+              preloading(false);
+              initialize();
+              var $newContainer = $(this.newContainer);
+              $newContainer.css({
+                'opacity': 0,
+                'visibility': 'hidden'
+              });
+              TweenLite.to($newContainer, .2, {autoAlpha: 1});
             });
-            TweenLite.fromTo($newContainer, 0.4, {autoAlpha: 0,}, {autoAlpha: 1});
           }
         });
 
@@ -341,19 +434,57 @@ BARBA CONFIG
           return PageTransition;
         };
 
+
+
 /*~~~~~~~~~~~~~~~~~
 SCROLLING
 ~~~~~~~~~~~~~~~~~*/
+        function transitionVisibleScrollElements(){
+          $('.article-preview').each(function(index){
+            if($(this).css('visibility') !== 'hidden') {
 
-      var scrollbar = Scrollbar.init(document.querySelector('.wrap'), {
-        damping: 0.08
-      });
+              TweenLite.from(this, 0.5, {opacity: 0, skewY: 2, y: 20, delay: (index+1)/2});
+            }
+          });
+        }
+
+        function initScrollMagic(){
+          console.log('init scrollmagic');
+          var controller = new ScrollMagic.Controller({
+            container: ".wrap"
+          });
+          $('.article-preview').each(function(){
+            var scene = new ScrollMagic.Scene({
+              triggerElement: this,
+              triggerHook: 0.76,
+              reverse: false
+            })
+            .setTween(TweenLite.from(this, 0.6, {autoAlpha: 0, skewY: 2, y: 30}))
+            .addTo(controller);
+          });
+
+        }
+
+
+/*~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~*/
 
 
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
-        TweenLite.to('html', 0.3, {opacity: 1});
+        //TweenLite.set('html', 0.3, {opacity: 1});
+        var scrollbar = Scrollbar.init(document.querySelector('.wrap'), {
+          damping: 0.08
+        });
+
+
+
+
+
+
+
       }
     },
     // Home page

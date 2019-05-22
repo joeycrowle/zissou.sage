@@ -4,7 +4,7 @@ use Roots\Sage\Wrapper;
 ?>
 
 <!doctype html>
-<html style="opacity:0" <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?>>
   <?php get_template_part('templates/head'); ?>
   <body <?php body_class(); ?>>
     <!--[if IE]>
@@ -15,6 +15,7 @@ use Roots\Sage\Wrapper;
     <?php
       do_action('get_header');
       get_template_part('templates/header');
+      get_template_part('templates/global-preloader');
     ?>
     <div class="wrap" role="document">
       <div id="barba-wrapper" class="content row">
@@ -25,6 +26,7 @@ use Roots\Sage\Wrapper;
         </main><!-- /.main -->
       </div><!-- /.content -->
       <?php
+
         do_action('get_footer');
         get_template_part('templates/footer');
         wp_footer();
