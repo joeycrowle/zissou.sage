@@ -42,6 +42,7 @@ VARS
         const stroke2 = $('.burger').find('.stroke:last-child');
 
         const Scrollbar = window.Scrollbar;
+        let controller;
 
 /*~~~~~~~~~~~~~~~~~
 PRELOADER
@@ -374,22 +375,37 @@ INIT SCRIPTS
           issueStyle = $('fields').data();
         }
 
+        function pageloadAnimation($container) {
+          $('.article-preview').each(function(index) {
+            if(inViewport(this)) {
+              TweenLite.fromTo(this, 1, {opacity: 0, y: 20, skewY:2}, {opacity: 1, y: 0, skewY: 0, delay: ((index+1)/2)+0.8});
+            }else {
+              $(this).css('opacity', '0');
+              inViewport(this, () => {
+                TweenLite.fromTo(this, 1, {opacity: 0, y: 20, skewY:2}, {opacity: 1, y: 0, skewY: 0});
+              });
+            }
+          });
+          TweenLite.to($container, 0, {opacity: 1, delay: 1.3});
+          setTimeout(function(){
+            preloading(false);
+          },1000);
+        }
+
         function firstLoad() {
           preloading(true);
-          initialized = true;
           TweenLite.to('.banner', 0.3, {opacity: 1});
           $('.main').imagesLoaded(()=> {
-            preloading(false);
-            TweenLite.to('.main', 0.3, {opacity: 1});
+            pageloadAnimation($('.main'));
           });
         }
 
         function initialize(){
           console.log('initialize');
             if(!initialized){firstLoad()}
-            initScrollMagic();
             checkIssue();
             setFonts();
+            initialized = true
         }
         initialize();
 /*~~~~~~~~~~~~~~~~~
@@ -416,18 +432,19 @@ BARBA CONFIG
           },
 
           fadeIn: function() {
-            $('.main').imagesLoaded(() => {
-              this.done();
-              preloading(false);
-              initialize();
-              var $newContainer = $(this.newContainer);
-              $newContainer.css({
-                'opacity': 0,
-                'visibility': 'hidden'
-              });
-              TweenLite.to($newContainer, .2, {autoAlpha: 1});
+            $newContainer = $(this.newContainer);
+            this.done();
+            initialize();
+            $newContainer.css({
+              'opacity': '0'
+            });
+
+            $newContainer.imagesLoaded(function(){
+
+              pageloadAnimation($newContainer);
             });
           }
+
         });
 
         Barba.Pjax.getTransition = function() {
@@ -442,14 +459,12 @@ SCROLLING
         function transitionVisibleScrollElements(){
           $('.article-preview').each(function(index){
             if($(this).css('visibility') !== 'hidden') {
-
-              TweenLite.from(this, 0.5, {opacity: 0, skewY: 2, y: 20, delay: (index+1)/2});
+              TweenLite.fromTo(this, 1, {opacity: 0, y: 20, skewY: 2}, {opacity: 1, y: 0, skewY: 0, delay: ((index+1)/2)});
             }
           });
         }
 
         function initScrollMagic(){
-          console.log('init scrollmagic');
           var controller = new ScrollMagic.Controller({
             container: ".wrap"
           });
@@ -459,10 +474,10 @@ SCROLLING
               triggerHook: 0.76,
               reverse: false
             })
-            .setTween(TweenLite.from(this, 0.6, {autoAlpha: 0, skewY: 2, y: 30}))
+            .setTween(TweenLite.from(this, 1, {autoAlpha: 0, skewY: 2, y: 30}))
             .addTo(controller);
+            //TweenLite.to(this, 0.001, {opacity: 0});
           });
-
         }
 
 
