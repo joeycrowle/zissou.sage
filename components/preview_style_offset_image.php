@@ -1,10 +1,23 @@
-<a class="article-preview preview-offset preview-customize" href="<?= $permalink ?>" <?php mag_preview_color($set_color, $color); ?> >
-  <h2 class="article-title font-primary preview__font"><?php echo $title; ?></h2>
-  <div class="article-excerpt">
-    <p class="preview__font"><?php echo $excerpt; ?></p>
+<?php
+  Use Roots\Sage\Extras;
+
+  $classes = array("article-preview", "preview-offset", "transition");
+
+  if (!$default_colour) {
+    $classes[] = "customize";
+  }
+  if($align_image == "Left") {
+    $classes[] = "align-left";
+  }
+  if($align_image== "Right") {
+    $classes[] = "align-right";
+  }
+
+?>
+
+<a class="<?= implode(" ", $classes) ?>" href="<?= $permalink ?>" <?php Extras\colorAttributes($default_colour, $font_colour, $background_colour); ?> >
+  <div class="preview-img-container">
+    <?php echo $article_image; ?>
   </div>
-  <div class="read-article preview__button">
-    <p>Read Article</p>
-  </div>
-  <?php echo $article_image; ?>
+  <?php Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt, 'number' => $number)); ?>
 </a>

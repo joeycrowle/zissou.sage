@@ -6,9 +6,12 @@ Use Roots\Sage\Extras;
 <div class="articles">
 <?php
 
+$i = 1;
 
 if(have_posts()) : while(have_posts()) : the_post();
-    get_template_part('templates/article-cover');
+    //get_template_part('templates/article-cover');
+    Extras\get_component('templates/article-cover', array('i' => $i));
+    $i++;
   endwhile; ?>
 </div>
 

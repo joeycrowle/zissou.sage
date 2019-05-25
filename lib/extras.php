@@ -66,6 +66,16 @@ function niceImage($imageID, $classes){
 }
 
 /**
+* PREVIEW COLOR / ADD DATA ATTRIBUTE
+*/
+function colorAttributes($set_color, $font, $background) {
+	if(!$set_color) {
+		echo "data-font-color=" . $font . " ";
+    echo "data-background-color=" . $background;
+	}
+}
+
+/**
 * GET COMPONENT
 */
 

@@ -1,0 +1,41 @@
+.preview-offset {
+  position: relative;
+  color: black;
+
+  .preview-img-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    transform: translateX(-50%);
+
+    img {
+      position: absolute;
+      display: inline-block;
+      right: 0;
+      width: auto;
+      height: 100%;
+      padding-top: 50px;
+    }
+  }
+
+  .preview-content {
+    //color: black;
+  }
+
+  .read-article {
+    //color: black !important;
+  }
+}
+
+.align-right {
+  .preview-img-container {
+    transform: translateX(50%) !important;
+
+    img {
+      left: 0 !important;
+    }
+  }
+}

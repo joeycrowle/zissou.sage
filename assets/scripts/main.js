@@ -247,13 +247,9 @@ MENU
 
         checkDimensions();
 
-/*~~~~~~~~~~~~~~~~~
-CONTROL ISSUE STYLE
-~~~~~~~~~~~~~~~~~*/
-        function setColours() {
-          primary = String(issueStyle.primary);
-          secondary = String(issueStyle.secondary);
-        }
+/*~~~~~~~~~~~~~~~~~~~
+CONTROL ISSUE STYLES
+~~~~~~~~~~~~~~~~~~~*/
 
         function setFonts(){
           font = issueStyle.font.replace('.', '');
@@ -270,89 +266,31 @@ CONTROL ISSUE STYLE
           $('.font-primary').addClass(font);
         }
 
+        function setPreviewColors() {
+          if($('.articles').length > 0) {
 
+            $('.customize').each(function(){
+              var fontColor = $(this).attr('data-font-color');
+              var backgroundColor = $(this).attr('data-background-color');
+              $(this).css('background', backgroundColor);
+              $(this).find('.preview__font').css('color', fontColor);
+              $(this).find('.preview__button p').css('color', fontColor);
+              $(this).find('.read-article').css('border-color', fontColor + ' !important');
+              $(this).find('.article-number p').css('color', fontColor);
+              $(this).find('.article-number').css('border-color', fontColor);
+            });
+            //set read article button border color
+            $('.article-preview').each(function(){
+              var color = $(this).find('.article-title').css('color');
+              $(this).find('.read-article').css('border', '4px solid ' + color);
+            });
 
-/*~~~~~~~~~~~~~~~~~~~~
-ARTICLE PREVIEW
-~~~~~~~~~~~~~~~~~~~~*/
-
-function customizePreviews() {
-  if($('.articles').length > 0) {
-    $('.preview-customize').each(function(){
-      var attr = $(this).attr('data-preview-color');
-      if (typeof attr !== typeof undefined && attr !== false) {
-        var color = $(this).data('preview-color');
-        console.log(color);
-      } else {
-        var color = issueStyle.primary;
-      }
-      $(this).find('.preview__font').css('color', color);
-      $(this).find('.preview__button').css({
-        'color': color,
-        'border-color': color
-      });
-    });
-  }
-}
+          }
+        }
 
 /*~~~~~~~~~~~~~~~~~
 INIT SCRIPTS
 ~~~~~~~~~~~~~~~~~*/
-/*
-        function initScripts() {
-          if(!initialized) {
-            //FIRST LOAD
-            console.log('first load');
-            TweenLite.to('.banner', 0.3, {opacity: 1});
-            preloading(true);
-
-            $('.main').imagesLoaded(function(){
-              TweenLite.to('.main', 0.4, {opacity: 1, delay: 1});
-              setTimeout(function(){
-                preloading(false);
-                transitionVisibleScrollElements();
-              },1000);
-            });
-
-            initialized = true;
-            if($('fields').data('issue') != '') {
-              issue = $('fields').data('issue');
-            }else {
-              issue = wpObject.currentIssue;
-            }
-            issueStyle = $('fields').data();
-            setFonts();
-            ////////////
-          }else {
-            //AJAX
-            console.log('ajax');
-            if($('fields').data('issue') !== '') {
-              newIssue = $('fields').data('issue');
-              console.log($('fields').data());
-              if(newIssue !== issue) {
-                issue = newIssue;
-                //ISSUE CHANGED
-                console.log('case2');
-                issueStyle = $('fields').data();
-                setFonts();
-              }else {
-                console.log('case3');
-                setFonts();
-              }
-            }else {
-              console.log('case4');
-              setFonts();
-            }
-          }
-          initScrollMagic();
-          customizePreviews();
-          $('.issue-num').text('Issue: '+issue);
-          //FIX BODY CLASSES
-          $('body').attr('class', String($('classes').attr('class')));
-          $('classes').remove();
-        }
-        initScripts();
-*/
 
         function checkIssue() {
           if (!initialized) {
@@ -376,13 +314,13 @@ INIT SCRIPTS
         }
 
         function pageloadAnimation($container) {
-          $('.article-preview').each(function(index) {
-            if(inViewport(this)) {
-              TweenLite.fromTo(this, 1, {opacity: 0, y: 20, skewY:2}, {opacity: 1, y: 0, skewY: 0, delay: ((index+1)/2)+0.8});
+          $('.transition').each(function(index) {
+            if(inViewport(this, {offset: -300})) {
+              TweenLite.fromTo(this, 0.86, {opacity: 0, y: 20, skewY:2}, {opacity: 1, y: 0, skewY: 0, delay: ((index+1)/2.2)+0.8});
             }else {
               $(this).css('opacity', '0');
-              inViewport(this, () => {
-                TweenLite.fromTo(this, 1, {opacity: 0, y: 20, skewY:2}, {opacity: 1, y: 0, skewY: 0});
+              inViewport(this, {offset: -300}, () => {
+                TweenLite.fromTo(this, 0.86, {opacity: 0, y: 20, skewY:2}, {opacity: 1, y: 0, skewY: 0});
               });
             }
           });
@@ -405,9 +343,16 @@ INIT SCRIPTS
             if(!initialized){firstLoad()}
             checkIssue();
             setFonts();
+            setPreviewColors();
             initialized = true
         }
         initialize();
+
+/*~~~~~~~~~~~~~~~~~
+OBJECT FIT POLYFIL
+~~~~~~~~~~~~~~~~~*/
+
+
 /*~~~~~~~~~~~~~~~~~
 BARBA CONFIG
 ~~~~~~~~~~~~~~~~~*/
@@ -438,47 +383,15 @@ BARBA CONFIG
             $newContainer.css({
               'opacity': '0'
             });
-
             $newContainer.imagesLoaded(function(){
-
               pageloadAnimation($newContainer);
             });
           }
-
         });
 
         Barba.Pjax.getTransition = function() {
           return PageTransition;
         };
-
-
-
-/*~~~~~~~~~~~~~~~~~
-SCROLLING
-~~~~~~~~~~~~~~~~~*/
-        function transitionVisibleScrollElements(){
-          $('.article-preview').each(function(index){
-            if($(this).css('visibility') !== 'hidden') {
-              TweenLite.fromTo(this, 1, {opacity: 0, y: 20, skewY: 2}, {opacity: 1, y: 0, skewY: 0, delay: ((index+1)/2)});
-            }
-          });
-        }
-
-        function initScrollMagic(){
-          var controller = new ScrollMagic.Controller({
-            container: ".wrap"
-          });
-          $('.article-preview').each(function(){
-            var scene = new ScrollMagic.Scene({
-              triggerElement: this,
-              triggerHook: 0.76,
-              reverse: false
-            })
-            .setTween(TweenLite.from(this, 1, {autoAlpha: 0, skewY: 2, y: 30}))
-            .addTo(controller);
-            //TweenLite.to(this, 0.001, {opacity: 0});
-          });
-        }
 
 
 /*~~~~~~~~~~~~~~~~~

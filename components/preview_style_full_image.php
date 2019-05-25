@@ -1,10 +1,16 @@
-<a class="article-preview preview-full" href="<?= $permalink ?>">
-  <h2 class="article-title font-primary"><?php echo $title; ?></h2>
-  <div class="article-excerpt">
-    <p><?php echo $excerpt; ?></p>
-  </div>
-  <div class="read-article">
-    <p>Read Article</p>
-  </div>
-  <?php echo $article_image; ?>
+<?php
+Use Roots\Sage\Extras;
+
+$classes = array("article-preview", "preview-full", "transition");
+
+if (!$default_colour) {
+  $classes[] = "customize";
+}
+?>
+
+<a class="<?= implode(" ", $classes) ?>" href="<?= $permalink ?>" <?php Extras\colorAttributes($default_colour, $font_colour, $background_colour); ?> >
+
+  <?php
+  Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt, 'number' => $number));
+  echo $article_image; ?>
 </a>
