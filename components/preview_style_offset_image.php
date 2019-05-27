@@ -12,6 +12,9 @@
   if($align_image== "Right") {
     $classes[] = "align-right";
   }
+  if($no_background) {
+    $classes[] = 'no-background';
+  }
 
 ?>
 
@@ -19,5 +22,5 @@
   <div class="preview-img-container">
     <?php echo $article_image; ?>
   </div>
-  <?php Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt, 'number' => $number)); ?>
+  <?php Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt)); ?>
 </a>

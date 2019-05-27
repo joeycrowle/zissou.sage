@@ -268,7 +268,6 @@ CONTROL ISSUE STYLES
 
         function setPreviewColors() {
           if($('.articles').length > 0) {
-
             $('.customize').each(function(){
               var fontColor = $(this).attr('data-font-color');
               var backgroundColor = $(this).attr('data-background-color');
@@ -280,11 +279,11 @@ CONTROL ISSUE STYLES
               $(this).find('.article-number').css('border-color', fontColor);
             });
             //set read article button border color
-            $('.article-preview').each(function(){
+            $('.article-preview').each(function(index){
+              $(this).find('.article-number p').text(index+1);
               var color = $(this).find('.article-title').css('color');
               $(this).find('.read-article').css('border', '4px solid ' + color);
             });
-
           }
         }
 
@@ -295,7 +294,6 @@ INIT SCRIPTS
         function checkIssue() {
           if (!initialized) {
             //First Load
-            console.log('first load');
             if($('fields').data('issue') !== '') {
               issue = $('fields').data('issue');
             }else {
@@ -303,7 +301,6 @@ INIT SCRIPTS
             }
           }else {
             //Not First Load
-            console.log('not first load');
             var newIssue = $('fields').data('issue');
             if(newIssue !== issue) {
               issue = newIssue;
@@ -311,6 +308,14 @@ INIT SCRIPTS
             }
           }
           issueStyle = $('fields').data();
+
+          var classes = $('body').attr('class');
+          if(classes.indexOf('tax-issue') >= 0) {
+            console.log(issueStyle);
+            TweenLite.to('body', 1, {backgroundColor: issueStyle.background});
+          } else {
+            TweenLite.to('body', 1, {backgroundColor: 'white'});
+          }
         }
 
         function pageloadAnimation($container) {
@@ -338,9 +343,16 @@ INIT SCRIPTS
           });
         }
 
+        function bodyClasses() {
+          var classes = $('classes').attr('class');
+          $('body').attr('class', classes);
+          $('classes').remove();
+        }
+
         function initialize(){
           console.log('initialize');
             if(!initialized){firstLoad()}
+            bodyClasses();
             checkIssue();
             setFonts();
             setPreviewColors();
@@ -352,6 +364,18 @@ INIT SCRIPTS
 OBJECT FIT POLYFIL
 ~~~~~~~~~~~~~~~~~*/
 
+        if(!Modernizr.objectfit) {
+            $('.obj-fit').each(function(){
+            var container = $(this);
+            imgUrl = container.find('img').prop('src');
+            if (imgUrl) {
+              container.css('background-image', 'url(' + imgUrl + ')');
+              container.css('background-size', 'cover');
+              container.css('background-position', 'center');
+              container.find('picture').css('display', 'none');
+            }
+          });
+        }
 
 /*~~~~~~~~~~~~~~~~~
 BARBA CONFIG
@@ -392,7 +416,6 @@ BARBA CONFIG
         Barba.Pjax.getTransition = function() {
           return PageTransition;
         };
-
 
 /*~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~

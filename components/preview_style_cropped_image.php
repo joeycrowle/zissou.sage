@@ -12,18 +12,21 @@ if ($crop == "Circle") {
 if ($blurred_background) {
   $classes[] = "blur-background";
 }
+if($no_background) {
+  $classes[] = 'no-background';
+}
 ?>
 
 <a class="<?= implode(" ", $classes) ?>" href="<?= $permalink ?>" <?php Extras\colorAttributes($default_colour, $font_colour, $background_colour); ?> >
   <?php if($blurred_background) : ?>
-    <div class="preview-background-img">
+    <div class="preview-background-img obj-fit">
       <?php echo $article_image; ?>
     </div>
   <?php endif;
-  Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt, 'number' => $number));
+  Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt));
   ?>
 
-  <div class="preview-image-container">
+  <div class="preview-image-container obj-fit">
     <?php echo $article_image; ?>
   </div>
 

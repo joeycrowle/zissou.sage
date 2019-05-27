@@ -11,6 +11,6 @@ if (!$default_colour) {
 
 <a class="<?= implode(" ", $classes) ?>" href="<?= $permalink ?>" <?php Extras\colorAttributes($default_colour, $font_colour, $background_colour); ?> >
   <?php
-  Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt, 'number' => $number));
+  Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt));
  ?>
 </a>

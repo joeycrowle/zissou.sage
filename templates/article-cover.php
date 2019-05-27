@@ -15,7 +15,7 @@ $preview_vars = array(
   'crop' => get_field('crop'),
   'align_image' => get_field('align_image'),
   'blurred_background' => get_field('blurred_background'),
-  'number' => $i
+  'no_background' => get_field('no_background')
 );
 
 switch (get_field('preview_style')) {

@@ -9,5 +9,5 @@
 </div>
 
 <div class="article-number">
-  <p><?php echo $number ?></p>
+  <p></p>
 </div>

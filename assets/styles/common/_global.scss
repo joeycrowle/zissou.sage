@@ -53,6 +53,14 @@ body, .wrap, .main, #barba-wrapper{
   }
 }
 
+.scrollbar-track {
+   background: none !important;
+}
+
+.scrollbar-thumb {
+  background: rgba(88, 0, 255, 0.86) !important;
+}
+
 ::selection {
   background: rgba(#221f20, 0.7);
   color: white;
