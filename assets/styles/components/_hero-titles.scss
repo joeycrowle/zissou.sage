@@ -1,0 +1,137 @@
+.hero-title-responsive {
+  font-size: 46pt;
+  line-height: 170%;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 80pt;
+  }
+  @include media-breakpoint-up(md) {
+    font-size: 90pt;
+  }
+
+  @media only screen and(max-height: 600px) {
+    font-size: 46pt;
+    line-height: 150%;
+  }
+}
+
+.hero-excerpt-responsive {
+  font-size: 20pt;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 30pt;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 36pt;
+  }
+}
+
+.hero-excerpt {
+  .excerpt {
+    @extend .hero-excerpt-responsive;
+  }
+}
+
+
+.title-regular {
+  .article-title {
+    h1 {
+      @extend .hero-title-responsive;
+    }
+  }
+}
+
+.title-stack {
+  .article-title {
+    h1 {
+      @extend .hero-title-responsive;
+      word-spacing: 99999999999pt;
+    }
+  }
+}
+
+.title-duplicated {
+  .hero {
+
+    .article-title {
+      max-width: none;
+      width: 9999vw;
+      top: initial;
+      bottom: 0;
+      transform: translate3d(-50%, 2%, 0);
+
+      h1 {
+        font-size: 20vw;
+        line-height: 120%;
+      }
+    }
+  }
+}
+
+.title-vertical-space {
+  .article-title {
+    h1 {
+      @extend .hero-title-responsive;
+      line-height: 150%;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    .article-title {
+      h1 {
+        line-height: 170%;
+      }
+    }
+  }
+  @include media-breakpoint-up(md) {
+    .article-title {
+      h1 {
+        line-height: 260%;
+      }
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    .article-title {
+      h1 {
+        line-height: 320%;
+      }
+    }
+  }
+}
+
+.align-excerpt-center {
+  .hero-excerpt {
+    text-align: center;
+  }
+}
+
+.align-excerpt-right {
+  .hero-excerpt {
+    text-align: right;
+  }
+}
+
+.align-author-left {
+  .hero-excerpt {
+    .author {
+      text-align: left;
+    }
+  }
+}
+
+.align-author-center {
+  .hero-excerpt {
+    .author {
+      text-align: center;
+    }
+  }
+}
+
+.align-author-right {
+  .hero-excerpt {
+    .author {
+      text-align: right;
+    }
+  }
+}

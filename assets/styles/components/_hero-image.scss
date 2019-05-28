@@ -1,0 +1,51 @@
+.hero-full {
+  .hero {
+    width: 100vw;
+    height: 90vh;
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      min-height: initial;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.hero-aligned {
+  .container {
+    overflow-x: visible;
+  }
+
+  .hero-image {
+    margin-top: 56.5px;
+    height: 80vh !important;
+    img {
+      position: absolute;
+      height: 100%;
+      width: auto;
+    }
+  }
+}
+
+.hero-align-right {
+  .hero-image {
+    text-align: right;
+
+    img {
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+.hero-none {
+  .hero {
+    height: 90vh;
+    min-height: 600px;
+  }
+}

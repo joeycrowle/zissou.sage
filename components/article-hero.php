@@ -30,10 +30,11 @@ if($style == "Double") { $classes[] = 'hero-double'; };
 if($style == "None") { $classes[] = 'hero-none'; };
 if($alignImage == "Left") { $classes[] = 'hero-align-left'; };
 if($alignImage == "Right") { $classes[] = 'hero-align-right'; };
+if($titleStyle == "Regular") { $classes[] = 'title-regular'; };
 if($titleStyle == "Stack") { $classes[] = 'title-stack'; };
 if($titleStyle == "Duplicated") { $classes[] = 'title-duplicated'; };
 if($titleStyle == "Vertical Space") { $classes[] = 'title-vertical-space'; };
-if($excerptPosition == "Inside" && $titleStyle !== "Duplicated" || $excerptPosition == "Inside" && $titleStyle !== "Vertical Space") { $classes[] = 'excerpt-inside'; };
+if($excerptPosition == "Inside" && $titleStyle != "Vertical Space" && $titleStyle != "Duplicated") { $classes[] = 'excerpt-inside'; };
 if($excerptPosition == "Outside") { $classes[] = 'excerpt-outside'; };
 if($alignExcerpt == "Left") { $classes[] = "align-excerpt-left"; };
 if($alignExcerpt == "Center") { $classes[] = "align-excerpt-center"; };
@@ -43,8 +44,9 @@ if($alignAuthor == "Center") { $classes[] = "align-author-center"; };
 if($alignAuthor == "Right") { $classes[] = "align-author-right"; };
 if($alignColumn == "Center") { $excerptRowClasses[] = "justify-content-center"; };
 if($alignColumn == "Right") { $excerptRowClasses[] = "justify-content-end"; };
-
 if($style == "Aligned") { $wrapClass[] = "container"; };
+
+
 
 function title($style, $title) {
   if($style == "Duplicated") {
@@ -81,8 +83,10 @@ function backgroundColour($style, $colour) {
         <?php echo Extras\niceImage($heroImgId, ''); ?>
       </div>
     <?php endif; ?>
-      <div class="article-title">
-        <h1 class="font-primary" <?php echo textColour($titleColour) ?>><?php echo title($titleStyle, $title); ?></h1>
+      <div class="article-title row justify-content-center">
+        <div class="col">
+          <h1 class="font-primary" <?php echo textColour($titleColour) ?>><?php echo title($titleStyle, $title); ?></h1>
+        </div>
       </div>
     </div>
   </div>
