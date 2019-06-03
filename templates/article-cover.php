@@ -7,7 +7,7 @@ Use Roots\Sage\Extras;
 $preview_vars = array(
   'permalink' => get_the_permalink(),
   'title' => get_the_title(),
-  'article_image' => Extras\niceImage(get_post_thumbnail_id(), 'preview-image'),
+  'article_image' => Extras\niceImage(get_post_thumbnail_id(), 'preview-image rellax'),
   'excerpt' => wp_trim_words(get_the_excerpt(), 20, '...'),
   'default_colour' => get_field('default_colour'),
   'font_colour' => get_field('font_button_colour'),

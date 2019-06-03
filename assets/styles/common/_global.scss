@@ -6,8 +6,8 @@
     max-width: 1000px;
   }
 
-  .row{
-    //margin-bottom: 30px;
+  @include media-breakpoint-down(sm) {
+    //padding: 0 30px;
   }
 }
 
@@ -18,7 +18,10 @@ body, .wrap, .main, #barba-wrapper{
 }
 
 .wrap {
-  height: 100vh;
+
+  //USE IF USING SMOOTH SCROLLBAR
+  //height: 100vh;
+
   //margin-top: 100px;
   overflow-y: auto;
 }

@@ -41,8 +41,12 @@ VARS
         const stroke1 = $('.burger').find('.stroke:first-child');
         const stroke2 = $('.burger').find('.stroke:last-child');
 
-        const Scrollbar = window.Scrollbar;
-        let controller;
+        //const Scrollbar = window.Scrollbar;
+        //Offset for reveal transition. 25% viewport height.
+        let deviceOffset = $(window).innerHeight()*0.25;
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
 
 /*~~~~~~~~~~~~~~~~~
 PRELOADER
@@ -140,16 +144,14 @@ MENU
 
         function openMenu() {
           menuIsOpen = true;
+          disableScroll();
           burgerDef();
           TweenLite.to($('header'), 0.85, {ease: Power3.easeInOut, height: '100%', onComplete: function(){
             burgerX();
             TweenLite.to($('header .inner'), 0.4, {backgroundColor: String(issueStyle.primary)});
 
-            //SHOW .NAV-CONTENT
-            $('.nav-content').css({
-              opacity: 0,
-              display: 'block'
-            });
+            $('.nav-content').removeClass('nav-content-display-none');
+
             TweenLite.fromTo('.nav-content', 1, {y: 30, opacity: 0, skewY: 1}, {y: 0, opacity: 1, skewY: 0, delay: .4});
 
 
@@ -157,6 +159,7 @@ MENU
         }
 
         function closeMenu() {
+          enableScroll();
           TweenLite.to($('.nav-content'), 0.3, {opacity: 0});
           TweenLite.to($('header'), 0.85, {ease: Power3.easeInOut, height: headerHeight+'px', delay: 0.3, onComplete: function(){
             menuIsOpen = false;
@@ -165,7 +168,7 @@ MENU
             $('.nav-content').css('opacity', 0);
           }});
           setTimeout(function(){
-            $('.nav-content').css('display', 'none');
+            $('.nav-content').addClass('nav-content-display-none');
           },300);
         }
 
@@ -211,17 +214,21 @@ MENU
           TweenLite.to($('#z, #i, #o, #u'), .15, {opacity: 1});
         }
 
-        $('.burger').click(function(){
-          if(!menuIsOpen) {
-            openMenu();
-          } else{
-            closeMenu();
-          }
-        });
 
-        $('.switch-view a').click(function(){
-          switchMenuView();
-        });
+        function disableScroll() {
+          $('html').css({
+            'max-height': '100vh',
+            'overflow-y': 'hidden'
+          });
+        }
+
+        function enableScroll() {
+          $('html').css({
+            'max-height': 'none',
+            'overflow-y': 'auto'
+          });
+        }
+
 
         if(!Modernizr.touchevents) {
             $('.burger').hover(function(){
@@ -240,6 +247,22 @@ MENU
             TweenLite.to(this, 0.2, {scale: 1});
           });
         }
+
+        $('.burger').click(function(){
+          if(!menuIsOpen) {
+            openMenu();
+          } else{
+            closeMenu();
+          }
+        });
+
+        $('.switch-view a').on('click', function(e) {
+          e.preventDefault();
+        });
+
+        $('.switch-view a').click(function(){
+          switchMenuView();
+        });
 
         $(window).resize(function(){
           checkDimensions();
@@ -287,6 +310,8 @@ CONTROL ISSUE STYLES
           }
         }
 
+
+
 /*~~~~~~~~~~~~~~~~~
 INIT SCRIPTS
 ~~~~~~~~~~~~~~~~~*/
@@ -314,22 +339,22 @@ INIT SCRIPTS
             console.log(issueStyle);
             TweenLite.to('body', 1, {backgroundColor: issueStyle.background});
           } else {
-            TweenLite.to('body', 1, {backgroundColor: 'white'});
+            //TweenLite.to('body', 1, {backgroundColor: 'white'});
           }
         }
 
         function pageloadAnimation($container) {
           $('.transition').each(function(index) {
-            if(inViewport(this, {offset: -300})) {
+            if(inViewport(this, {offset: -deviceOffset})) {
               TweenLite.fromTo(this, 0.86, {opacity: 0, y: 20, skewY:2}, {opacity: 1, y: 0, skewY: 0, delay: ((index+1)/2.2)+0.8});
             }else {
               $(this).css('opacity', '0');
-              inViewport(this, {offset: -300}, () => {
+              inViewport(this, {offset: -deviceOffset}, () => {
                 TweenLite.fromTo(this, 0.86, {opacity: 0, y: 20, skewY:2}, {opacity: 1, y: 0, skewY: 0});
               });
             }
           });
-          TweenLite.to($container, 0, {opacity: 1, delay: 1.3});
+          TweenLite.to($container, 0, {opacity: 1, delay: 1.3})
           setTimeout(function(){
             preloading(false);
           },1000);
@@ -344,9 +369,15 @@ INIT SCRIPTS
         }
 
         function bodyClasses() {
-          var classes = $('classes').attr('class');
-          $('body').attr('class', classes);
+          $('body').attr('class', $('classes').attr('class'));
           $('classes').remove();
+        }
+
+        function initRellax() {
+          var rellax = new Rellax('.rellax', {
+            speed: -2,
+            center: true
+          });
         }
 
         function initialize(){
@@ -356,9 +387,15 @@ INIT SCRIPTS
             checkIssue();
             setFonts();
             setPreviewColors();
+            initRellax();
+            //scrollToTop();
             initialized = true
         }
         initialize();
+
+
+
+
 
 /*~~~~~~~~~~~~~~~~~
 OBJECT FIT POLYFIL
@@ -393,10 +430,22 @@ BARBA CONFIG
           fadeOut: function() {
             var deferred = Barba.Utils.deferred();
 
-            TweenLite.to(this.oldContainer, 0.4, {autoAlpha: 0, onComplete: function(){
-              deferred.resolve();
-              preloading(true);
-            }});
+            if(menuIsOpen) {
+              closeMenu();
+              TweenLite.to(this.oldContainer, 0.4, {autoAlpha: 0, delay: 0.7, onComplete: function(){
+                $('body, html').scrollTop(0);
+                deferred.resolve();
+                preloading(true);
+              }});
+            } else {
+              TweenLite.to(this.oldContainer, 0.4, {autoAlpha: 0, onComplete: function(){
+                $('body, html').scrollTop(0);
+                deferred.resolve();
+                preloading(true);
+              }});
+            }
+
+
             return deferred.promise;
           },
 
@@ -426,15 +475,18 @@ BARBA CONFIG
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
         //TweenLite.set('html', 0.3, {opacity: 1});
-        var scrollbar = Scrollbar.init(document.querySelector('.wrap'), {
-          damping: 0.08
-        });
 
 
-
-
-
-
+        /*
+        if(!Modernizr.touchevents) {
+          var scrollbar = Scrollbar.init(document.querySelector('.wrap'), {
+            damping: 0.08,
+            plugins: {
+              scrollPlugin: {}
+            }
+          });
+        }
+        */
 
       }
     },

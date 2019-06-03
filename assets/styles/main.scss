@@ -8,6 +8,7 @@
 @import "../../node_modules/slick-carousel/slick/slick.scss";
 
 @import "common/global";
+@import "common/fonts";
 @import "common/typography";
 @import "components/buttons";
 @import "components/comments";
@@ -15,9 +16,14 @@
 @import "components/grid";
 @import "components/wp-classes";
 @import "components/article-preview";
+@import "components/article-text-column";
+@import "components/article-block-quote";
+@import "components/article-image-seperator";
+@import "components/article-image";
 @import "components/hero";
 @import "layouts/header";
 @import "layouts/nav-content";
+@import "layouts/page-aux";
 @import "layouts/sidebar";
 @import "layouts/footer";
 @import "layouts/pages";

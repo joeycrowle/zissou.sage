@@ -1,18 +1,12 @@
 .nav-content {
-  display: flex;
-  flex-direction: column;
+  display: none;
   color: white;
   padding-top: 20px;
-
-  a {
-    color: white;
-    text-decoration: none;
-  }
+  overflow-y: auto;
 
   .switch-view {
     width: 100%;
     text-align: center;
-    margin: 10px 0 30px 0;
 
     ul {
       display: inline-block;
@@ -30,6 +24,7 @@
         a {
           text-decoration: none;
           color: white;
+          font-size: 14pt;
           padding: 0 0px;
           pointer-events: all;
         }
@@ -40,54 +35,39 @@
   .container {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    overflow-y: auto;
+    //height: 100% !important;
 
     .recent-issues {
-      margin: auto;
 
       .issue-container {
         display: inline-block;
-        width: 100% !important;
-        //padding: 0 !important;
-
-        .issue-description {
-          display: none;
-        }
-
+        width: 33.3%;
+        float: left;
 
         &:first-child {
           width: 100%;
-          //padding: 6vh 0 0 0;
+          padding: 6vh 0;
           text-align: center;
-          margin-bottom: 25px;
 
-          .current-issue-heading {
-            margin-bottom: 15px;
+          p {
+            display: inline-block;
+            max-width: 33.3%;
           }
         }
 
         //RECENT ISSUES
         &:not(:first-child) {
+          padding: 20px;
+
           .issue {
-            border-top: 2px solid white;
+            border-top: 4px solid white;
 
             h5 {
-              margin-top: 10px;
-              font-size: 10pt;
-            }
-
-            h3 {
-              font-size: 15pt;
+              margin-top: 20px;
             }
 
             p {
               margin-top: 40px;
-            }
-          }
-          &:last-child {
-            .issue {
-              border-bottom: 2px solid white;
             }
           }
         }
@@ -96,10 +76,9 @@
           display: block;
 
           .current-issue-title {
-            font-size: 22pt;
-            margin-bottom: 30px;
+            font-size: 36pt;
+            padding: 50px;
           }
-
           h4 {
             color: white;
           }
@@ -110,9 +89,7 @@
     .pages {
       display: none;
       opacity: 0;
-      //height: 100%;
-      margin: auto 0;
-
+      margin-top: 6vh;
 
       ul {
         padding: 0;
@@ -163,102 +140,19 @@
   }
 }
 
-@include media-breakpoint-up(md) {
+.view-btn-select {
+  border-bottom: 2px solid white;
+  opacity: 1 !important;
 
-  .switch-view {
-    a {
-      font-size: 20pt !important;
-    }
-  }
-
-  .nav-content {
-
-    p {
-      font-size: 16pt;
-    }
-
-    .current-issue-title {
-      font-size: 30pt !important;
-    }
-
-    .issue-title {
-      font-size: 18pt !important;
-    }
-
-    h5 {
-      font-size: 13pt !important;
-    }
-
-    .pages {
-      a {
-        font-size: 18pt !important;
-        padding: 15px 0 !important;
-      }
-      li {
-        border-bottom: 4px solid white !important;
-        &:first-child {
-          border-top: 4px solid white !important;
-        }
-      }
-    }
-
-    .content {
-        //overflow-y: hidden;
-      .issue-description {
-        display: block !important;
-      }
-
-      .recent-issues {
-
-
-        .issue-container {
-
-          &:first-child {
-            .issue-description {
-              padding: 0 25%;
-              margin-bottom: 60px;
-            }
-          }
-
-          &:not(:first-child) {
-            width: 33.3% !important;
-            float: left !important;
-
-            .issue {
-              border-top: 0;
-              padding: 0 6px !important;
-
-
-
-              h5 {
-                padding-top: 10px;
-                border-top: 4px solid white;
-              }
-
-
-            }
-
-            &:last-child {
-              .issue {
-                border-bottom: 0;
-              }
-
-            }
-          }
-        }
-      }
-
-    }
+  a {
+    pointer-events: none !important;
   }
 }
 
-
-
-/*
 @include media-breakpoint-down(md) {
 
   .recent-issues {
-    //margin-top: 6vh;
+    margin-top: 6vh;
   }
   .issue-container {
     width: 100% !important;
@@ -269,11 +163,11 @@
     }
 
     .issue {
-      padding: 8px 0 !important;
+      padding: 15px 0 !important;
       margin: 0 !important;
 
       h3 {
-        font-size: 14pt;
+        font-size: 20pt;
       }
 
       h4 {
@@ -308,7 +202,7 @@
       }
       &:last-child {
         .issue {
-          border-bottom: 2px solid white;
+          border-bottom: 4px solid white;
         }
 
       }
@@ -323,24 +217,4 @@
     //display: none !important;
   }
 
-}
-
-*/
-
-.nav-content-display-none {
-  display: none !important;
-}
-
-.nav-content-visible {
-  display: flex;
-  flex-direction: column;
-}
-
-.view-btn-select {
-  border-bottom: 2px solid white;
-  opacity: 1 !important;
-
-  a {
-    pointer-events: none !important;
-  }
 }

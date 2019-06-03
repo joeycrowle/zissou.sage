@@ -109,6 +109,18 @@
 .align-excerpt-right {
   .hero-excerpt {
     text-align: right;
+    .row {
+      margin-right: 0;
+    }
+  }
+}
+
+.align-excerpt-left {
+  .hero-excerpt {
+    text-align: left;
+    .row {
+      //
+    }
   }
 }
 

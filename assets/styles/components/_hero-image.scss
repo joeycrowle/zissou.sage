@@ -1,7 +1,7 @@
 .hero-full {
   .hero {
     width: 100vw;
-    height: 90vh;
+    height: 70vh;
 
     .hero-image {
       width: 100%;
@@ -17,6 +17,10 @@
 }
 
 .hero-aligned {
+  .hero {
+    padding-left: 30px;
+  }
+
   .container {
     overflow-x: visible;
   }
@@ -33,6 +37,11 @@
 }
 
 .hero-align-right {
+
+  .hero {
+    padding-right: 30px;
+  }
+
   .hero-image {
     text-align: right;
 

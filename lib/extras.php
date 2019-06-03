@@ -89,6 +89,20 @@ function get_component($slug, array $params = array(), $output = true) {
     if(!$output) return ob_get_clean();
 }
 
+// STYLES
+
+function textColour($colour) {
+  if($colour) {
+    return 'style="color: '. $colour .' !important;"';
+  }
+}
+
+function backgroundColour($colour) {
+  if($colour) {
+    return 'style="background-color: '. $colour .' !important;"';
+  }
+}
+
 function pr($data){
   echo "<pre>";
   print_r($data); // or var_dump($data);

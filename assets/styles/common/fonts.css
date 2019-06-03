@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'Akkurat';
+    src: url('../fonts/Akkurat.woff2') format('woff2'),
+        url('../fonts/Akkurat.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Akkurat';
+    src: url('../fonts/Akkurat-Bold.woff2') format('woff2'),
+        url('../fonts/Akkurat-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cerebri Sans Book';
+    src: url('../fonts/CerebriSans-Book.woff2') format('woff2'),
+        url('../fonts/CerebriSans-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cerebri Sans';
+    src: url('../fonts/CerebriSans-Bold.woff2') format('woff2'),
+        url('../fonts/CerebriSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}

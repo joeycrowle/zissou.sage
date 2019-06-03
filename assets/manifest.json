@@ -8,6 +8,7 @@
         "../node_modules/smooth-scrollbar/dist/smooth-scrollbar.js",
         "../node_modules/imagesloaded/imagesloaded.pkgd.min.js",
         "../node_modules/in-viewport/build/in-viewport.min.js",
+        "../node_modules/rellax/rellax.min.js",
         "scripts/bodymovin.js",
         "scripts/preloaderanimation.js",
         "scripts/main.js"

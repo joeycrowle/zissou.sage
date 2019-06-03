@@ -62,44 +62,33 @@ function title($style, $title) {
     return $title;
   }
 }
-
-function textColour($colour) {
-  return 'style="color: '. $colour .' !important;"';
-}
-
-function backgroundColour($style, $colour) {
-  if($style == "None") {
-    return 'style="background-color: '. $colour .' !important;"';
-  }
-}
-
 ?>
 
 <div class="<?= implode(" ", $classes); ?>">
   <div class="<?= implode(" ", $wrapClass); ?>">
-    <div class="hero" <?php echo backgroundColour($style, $backgroundColour); ?>>
+    <div class="hero" <?php if($style=="None"){echo Extras\backgroundColour($backgroundColour);} ?>>
       <?php if($style !== "None") : ?>
-      <div class="hero-image">
-        <?php echo Extras\niceImage($heroImgId, ''); ?>
+      <div class="hero-image obj-fit">
+        <?php echo Extras\niceImage($heroImgId, 'rellax'); ?>
       </div>
     <?php endif; ?>
-      <div class="article-title row justify-content-center">
+      <div class="article-title row justify-content-center ">
         <div class="col">
-          <h1 class="font-primary" <?php echo textColour($titleColour) ?>><?php echo title($titleStyle, $title); ?></h1>
+          <h1 class="font-primary" <?php echo Extras\textColour($titleColour) ?>><?php echo title($titleStyle, $title); ?></h1>
         </div>
       </div>
     </div>
   </div>
   <?php if($excerpt || $author) : ?>
-  <div class="hero-excerpt container">
+  <div data-rellax class="hero-excerpt container">
     <div class="<?= implode(" ", $excerptRowClasses); ?>">
       <div class="col-11 col-md-9">
         <?php if($excerpt) : ?>
-        <p class="excerpt" <?php echo textColour($excerptColour) ?>><?php echo $excerpt; ?></p>
-      <?php endif; ?>
+        <p class="excerpt" <?php echo Extras\textColour($excerptColour) ?>><?php echo $excerpt; ?></p>
+        <?php endif; ?>
         <?php if($author) : ?>
         <div class="author">
-          <p <?php echo textColour($excerptColour) ?>><?php echo $author; ?></p>
+          <p <?php echo Extras\textColour($excerptColour) ?>><?php echo $author; ?></p>
         </div>
         <?php endif; ?>
       </div>

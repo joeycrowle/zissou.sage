@@ -1,6 +1,7 @@
 .article-hero {
   position: relative;
   width: 100%;
+  margin-bottom: 60px;
 
   .hero {
     position: relative;
@@ -21,11 +22,18 @@
       text-align: center;
     }
 
-    .container {
-      overflow-x: visible;
-    }
+
+  }
+  .container {
+    overflow-x: visible !important;
   }
 }
+
+@include media-breakpoint-up(md) {
+  .article-hero {
+    margin-bottom: 100px;
+  }
+};
 
 @import "./_hero-image.scss";
 @import "./_hero-titles.scss";

@@ -1,5 +1,53 @@
 body {
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
-  font-size: 15pt;
+  font-size: 14pt;
+  font-family: 'Cerebri Sans Book', sans-serif !important;
+}
+
+.title-lg-responsive {
+  font-size: 46pt;
+  line-height: 170%;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 80pt;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 90pt;
+  }
+
+  @media only screen and(max-height: 600px) {
+    font-size: 46pt;
+    line-height: 150%;
+  }
+}
+
+.title-md-responsive {
+  font-size: 36pt !important;
+  line-height: 140%;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 60pt !important;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 70pt !important;
+  }
+
+  @media only screen and(max-height: 600px) {
+    font-size: 46pt;
+    line-height: 150%;
+  }
+}
+
+.copy-responsive {
+  font-size: 14pt;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 18pt;
+  }
+  @include media-breakpoint-up(lg) {
+    font-size: 22pt;
+  }
 }
