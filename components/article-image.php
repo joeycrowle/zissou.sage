@@ -20,17 +20,17 @@ if($style == "Padded") {
   if($align == "Center") {$classes[] = 'image-padded-center'; $rowClasses[] = 'justify-content-center';}
   if($align == "Right") {$classes[] = 'image-padded-right'; $rowClasses[] = 'justify-content-end';}
 }
+?>
 
 
-
- ?>
-
-<div class="<?= implode(" ", $classes) ?>">
-  <div class="<?= implode(" ", $rowClasses) ?>">
-    <div class="col-11 col-md-9 rellax">
-      <div class="article-image-container">
-        <?php echo Extras\niceImage($image['id'], '') ?>
+<section>
+  <div class="<?= implode(" ", $classes) ?>">
+    <div class="<?= implode(" ", $rowClasses) ?>">
+      <div class="col-11 col-md-9 rellax">
+        <div class="article-image-container">
+          <?php echo Extras\niceImage($image['id'], '') ?>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>

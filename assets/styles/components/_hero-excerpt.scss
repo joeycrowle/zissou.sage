@@ -9,3 +9,16 @@
     margin-top: 30px;
   }
 }
+
+.hero-excerpt {
+  margin-bottom: 200px;
+
+  .author {
+    margin-top: 20px;
+    font-size: 18pt;
+  }
+}
+
+.hero-aligned .hero-excerpt .excerpt{
+  margin-top: 200px !important;
+}

@@ -38,12 +38,13 @@ VARS
         var menuIsOpen = false;
         const headerHeight = $('header').outerHeight();
         const headerDefaultColour = $('header .inner').css('background-color');
+        const headerTransitionOffset = $(window).innerHeight()*0.15;
         const stroke1 = $('.burger').find('.stroke:first-child');
         const stroke2 = $('.burger').find('.stroke:last-child');
 
         //const Scrollbar = window.Scrollbar;
         //Offset for reveal transition. 25% viewport height.
-        let deviceOffset = $(window).innerHeight()*0.25;
+        const deviceOffset = $(window).innerHeight()*0.25;
         if ('scrollRestoration' in history) {
           history.scrollRestoration = 'manual';
         }
@@ -57,6 +58,7 @@ PRELOADER
             console.log('preloading...');
             $('#global-preloader').css('display', 'block');
             TweenLite.fromTo('#global-preloader', 0.4, {opacity: 0, y: 30}, {opacity: 1, y: 0});
+            preloader.goToAndPlay(0);
           }else {
             TweenLite.to('#global-preloader', 0.2, {opacity: 0, y: 30, onComplete(){
               $('#global-preloader').css('display', 'none');
@@ -68,13 +70,15 @@ PRELOADER
 BODYMOVIN
 ~~~~~~~~~~~~~~~~~*/
 
-      bodymovin.loadAnimation({
+    let preloader =  bodymovin.loadAnimation({
         container: document.getElementById('global-preloader-animation'),
         renderer: 'svg',
         loop: true,
         autoplay: true,
         animationData: window.preloaderAnimation
       });
+
+      console.log(preloader);
 
 /*~~~~~~~~~~~~~~~~~
 MENU
@@ -146,15 +150,13 @@ MENU
           menuIsOpen = true;
           disableScroll();
           burgerDef();
-          TweenLite.to($('header'), 0.85, {ease: Power3.easeInOut, height: '100%', onComplete: function(){
-            burgerX();
-            TweenLite.to($('header .inner'), 0.4, {backgroundColor: String(issueStyle.primary)});
-
-            $('.nav-content').removeClass('nav-content-display-none');
-
-            TweenLite.fromTo('.nav-content', 1, {y: 30, opacity: 0, skewY: 1}, {y: 0, opacity: 1, skewY: 0, delay: .4});
-
-
+          headerColours('#fff');
+          TweenLite.to('header .inner', 0.2, {backgroundColor: String(issueStyle.primary), onComplete: function(){
+            TweenLite.to('header', 0.85, {ease:Power3.easeInOut, height: '100%', onComplete: function(){
+              burgerX();
+              $('.nav-content').removeClass('nav-content-display-none');
+              TweenLite.fromTo('.nav-content', 1, {y: 30, opacity: 0, skewY: 1}, {y: 0, opacity: 1, skewY: 0});
+            }})
           }});
         }
 
@@ -164,12 +166,40 @@ MENU
           TweenLite.to($('header'), 0.85, {ease: Power3.easeInOut, height: headerHeight+'px', delay: 0.3, onComplete: function(){
             menuIsOpen = false;
             burgerDef();
+            //headerColours(issueStyle.secondary);
+            changeTheme(true, false);
             TweenLite.to($('header .inner'), 0.4, {backgroundColor: String(headerDefaultColour)});
             $('.nav-content').css('opacity', 0);
           }});
           setTimeout(function(){
             $('.nav-content').addClass('nav-content-display-none');
           },300);
+        }
+
+        function headerColours(colour) {
+          $('#zissou-logo').css('fill', colour);
+          $('.burger .stroke').css('background', colour);
+          $('.search .circle').css('border-color', colour);
+        }
+
+        function changeTheme(header, background) {
+          var classes = $('body').attr('class');
+          let useTheme = classes.match( /(single|tax-issue)/ );
+          if(useTheme) {
+            if(header) {
+              headerColours(issueStyle.secondary);
+            }
+            if(background) {
+              TweenLite.to('body', 1, {backgroundColor: issueStyle.background});
+            }
+          } else {
+            if(header) {
+              headerColours('black');
+            }
+            if(background) {
+              TweenLite.to('body', 1, {backgroundColor: 'white'});
+            }
+          }
         }
 
         function switchMenuView() {
@@ -214,7 +244,6 @@ MENU
           TweenLite.to($('#z, #i, #o, #u'), .15, {opacity: 1});
         }
 
-
         function disableScroll() {
           $('html').css({
             'max-height': '100vh',
@@ -256,11 +285,8 @@ MENU
           }
         });
 
-        $('.switch-view a').on('click', function(e) {
+        $('.switch-view a').click(function(e){
           e.preventDefault();
-        });
-
-        $('.switch-view a').click(function(){
           switchMenuView();
         });
 
@@ -298,12 +324,9 @@ CONTROL ISSUE STYLES
               $(this).find('.preview__font').css('color', fontColor);
               $(this).find('.preview__button p').css('color', fontColor);
               $(this).find('.read-article').css('border-color', fontColor + ' !important');
-              $(this).find('.article-number p').css('color', fontColor);
-              $(this).find('.article-number').css('border-color', fontColor);
             });
             //set read article button border color
             $('.article-preview').each(function(index){
-              $(this).find('.article-number p').text(index+1);
               var color = $(this).find('.article-title').css('color');
               $(this).find('.read-article').css('border', '4px solid ' + color);
             });
@@ -334,13 +357,7 @@ INIT SCRIPTS
           }
           issueStyle = $('fields').data();
 
-          var classes = $('body').attr('class');
-          if(classes.indexOf('tax-issue') >= 0) {
-            console.log(issueStyle);
-            TweenLite.to('body', 1, {backgroundColor: issueStyle.background});
-          } else {
-            //TweenLite.to('body', 1, {backgroundColor: 'white'});
-          }
+          changeTheme(true, true);
         }
 
         function pageloadAnimation($container) {
@@ -368,6 +385,17 @@ INIT SCRIPTS
           });
         }
 
+        function disableDumbLinks() {
+          let location = window.location.href;
+          $('.wrap a').each(function(){
+            if(location.indexOf($(this).attr('href')) >= 0) {
+              $(this).addClass('disabled');
+            }else {
+              $(this).removeClass('disabled');
+            }
+          })
+        }
+
         function bodyClasses() {
           $('body').attr('class', $('classes').attr('class'));
           $('classes').remove();
@@ -388,14 +416,10 @@ INIT SCRIPTS
             setFonts();
             setPreviewColors();
             initRellax();
-            //scrollToTop();
+            disableDumbLinks();
             initialized = true
         }
         initialize();
-
-
-
-
 
 /*~~~~~~~~~~~~~~~~~
 OBJECT FIT POLYFIL
@@ -470,7 +494,6 @@ BARBA CONFIG
 ~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~*/
 
-
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
@@ -488,6 +511,15 @@ BARBA CONFIG
         }
         */
 
+/*
+        $(window).on('scroll', function(){
+          if($(window).scrollTop() > 100) {
+            TweenLite.to('header', 0.5, {y: -100});
+          } else {
+            TweenLite.to('header', 0.5, {y: 0});
+          }
+        });
+*/
       }
     },
     // Home page

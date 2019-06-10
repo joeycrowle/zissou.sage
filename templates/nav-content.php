@@ -15,7 +15,7 @@ $recentIssues = mag_recent_issues(4);
     <div class="recent-issues">
       <?php foreach ($recentIssues as $key => $issue) :
         $url = get_home_url() . '?issue=' . $issue['slug']; ?>
-        
+
         <div class="issue-container">
           <a href="<?= $url ?>" class="issue">
             <?php if ($key == 0) :?>
@@ -33,12 +33,6 @@ $recentIssues = mag_recent_issues(4);
 
     <div class="pages">
       <?php wp_nav_menu(array('theme_location'=>'pages_navigation')); ?>
-    </div>
-
-
-
-    <div class="nav-footer">
-
     </div>
   </div>
 </div>

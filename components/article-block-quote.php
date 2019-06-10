@@ -25,7 +25,7 @@ if($backgroundPosition == "Right") { $classes[] = 'image-right'; }
 if($issue_font) {$fontClass[] = 'font-primary';}
 ?>
 
-
+<section>
   <div <?php if($backgroundStyle == "Colour"){echo Extras\backgroundColour($backgroundColour);} ?> class="<?= implode(" ", $classes) ?>">
     <div class="container">
 
@@ -46,3 +46,4 @@ if($issue_font) {$fontClass[] = 'font-primary';}
 
   </div>
 </div>
+</section>

@@ -7,7 +7,3 @@
     <p>Read Article</p>
   </div>
 </div>
-
-<div class="article-number">
-  <p></p>
-</div>

@@ -1,5 +1,5 @@
 <?php
-// ARTICLE PAGE
+// POSTS PAGE
 
 Use Roots\Sage\Extras;
 

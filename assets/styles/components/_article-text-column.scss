@@ -1,23 +1,8 @@
 .article-text-column {
   position: relative;
   z-index: 10;
-  //margin: 60px auto;
+  //margin: 300px auto;
   p {
     @extend .copy-responsive;
-  }
-}
-
-.align-column-left {
-  .row {
-    
-  }
-  div[class*='col'] {
-    padding-left: 20px;
-  }
-}
-
-.align-column-center {
-  div[class*='col'] {
-    padding: 0 25px;
   }
 }

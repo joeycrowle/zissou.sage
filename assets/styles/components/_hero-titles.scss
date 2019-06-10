@@ -3,10 +3,10 @@
   line-height: 170%;
 
   @include media-breakpoint-up(sm) {
-    font-size: 80pt;
+    font-size: 60pt;
   }
   @include media-breakpoint-up(md) {
-    font-size: 90pt;
+    font-size: 70pt;
   }
 
   @media only screen and(max-height: 600px) {
@@ -38,6 +38,7 @@
   .article-title {
     h1 {
       @extend .hero-title-responsive;
+      line-height: 110%;
     }
   }
 }

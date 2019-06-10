@@ -20,9 +20,11 @@ use Roots\Sage\Wrapper;
     <div class="wrap" role="document">
       <div id="barba-wrapper" class="content row">
         <main class="main barba-container">
-          <fields <?php mag_get_issue_fields(); ?> ></fields>
-          <classes <?php body_class(); ?>></classes>
-          <?php include Wrapper\template_path(); ?>
+          <div class="page-content">
+            <fields <?php mag_get_issue_fields(); ?> ></fields>
+            <classes <?php body_class(); ?>></classes>
+            <?php include Wrapper\template_path(); ?>
+          </div>
         </main><!-- /.main -->
       </div><!-- /.content -->
       <?php

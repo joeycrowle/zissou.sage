@@ -45,9 +45,15 @@ body {
   font-size: 14pt;
 
   @include media-breakpoint-up(sm) {
-    font-size: 18pt;
+    font-size: 15pt;
   }
   @include media-breakpoint-up(lg) {
-    font-size: 22pt;
+    font-size: 16pt;
   }
+}
+
+a.disabled {
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.6;
 }
