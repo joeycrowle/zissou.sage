@@ -9,11 +9,11 @@ body {
   font-size: 46pt;
   line-height: 170%;
 
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
     font-size: 80pt;
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(xl) {
     font-size: 90pt;
   }
 
@@ -27,11 +27,11 @@ body {
   font-size: 36pt !important;
   line-height: 140%;
 
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
     font-size: 60pt !important;
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(xl) {
     font-size: 70pt !important;
   }
 
@@ -44,11 +44,40 @@ body {
 .copy-responsive {
   font-size: 14pt;
 
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
     font-size: 15pt;
   }
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(xl) {
     font-size: 16pt;
+  }
+}
+
+.hero-title-responsive {
+  font-size: 46pt;
+  line-height: 170%;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 60pt;
+  }
+  @include media-breakpoint-up(md) {
+    font-size: 70pt;
+  }
+
+  @media only screen and(max-height: 600px) {
+    font-size: 46pt;
+    line-height: 150%;
+  }
+}
+
+.hero-excerpt-responsive {
+  font-size: 20pt;
+
+  @include media-breakpoint-up(sm) {
+    font-size: 30pt;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 36pt;
   }
 }
 

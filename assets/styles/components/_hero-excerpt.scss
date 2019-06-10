@@ -11,7 +11,7 @@
 }
 
 .hero-excerpt {
-  margin-bottom: 200px;
+  margin: 200px auto;
 
   .author {
     margin-top: 20px;
@@ -19,6 +19,6 @@
   }
 }
 
-.hero-aligned .hero-excerpt .excerpt{
+.hero-aligned .hero-excerpt .excerpt-container{
   margin-top: 200px !important;
 }

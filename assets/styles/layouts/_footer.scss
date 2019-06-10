@@ -2,14 +2,29 @@ footer {
   margin-top: auto;
   //padding-top: 200px;
   padding-bottom: 30px;
+  margin: 0 10px;
 
   ul {
     list-style: none;
-    padding: 0 0px;
+    padding: 0;
+    margin-bottom: 0;
 
     li {
       a {
         color: black;
+      }
+    }
+  }
+
+  .icons {
+    display: flex;
+    align-items: flex-end;
+  }
+  .social-icons {
+    a {
+      svg {
+        width: 30px;
+        height: 30px;
       }
     }
   }

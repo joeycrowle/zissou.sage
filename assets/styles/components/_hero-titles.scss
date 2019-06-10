@@ -1,33 +1,7 @@
-.hero-title-responsive {
-  font-size: 46pt;
-  line-height: 170%;
 
-  @include media-breakpoint-up(sm) {
-    font-size: 60pt;
-  }
-  @include media-breakpoint-up(md) {
-    font-size: 70pt;
-  }
-
-  @media only screen and(max-height: 600px) {
-    font-size: 46pt;
-    line-height: 150%;
-  }
-}
-
-.hero-excerpt-responsive {
-  font-size: 20pt;
-
-  @include media-breakpoint-up(sm) {
-    font-size: 30pt;
-  }
-
-  @include media-breakpoint-up(md) {
-    font-size: 36pt;
-  }
-}
 
 .hero-excerpt {
+  font-weight: 600;
   .excerpt {
     @extend .hero-excerpt-responsive;
   }
@@ -37,7 +11,7 @@
 .title-regular {
   .article-title {
     h1 {
-      @extend .hero-title-responsive;
+      @extend .title-md-responsive;
       line-height: 110%;
     }
   }
@@ -108,15 +82,19 @@
 }
 
 .align-excerpt-right {
+  margin: 0 10px;
   .hero-excerpt {
-    text-align: right;
     .row {
       margin-right: 0;
+      div[class*='col'] {
+        padding: 0;
+      }
     }
   }
 }
 
 .align-excerpt-left {
+  margin-left: 10px !important;
   .hero-excerpt {
     text-align: left;
     .row {
