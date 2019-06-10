@@ -5,5 +5,10 @@ article {
     margin-bottom: 300px;
     margin-left: 10px;
     margin-right: 10px;
+    overflow: visible;
+
+    &:first-child {
+      margin-top: 100px;
+    }
   }
 }

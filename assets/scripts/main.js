@@ -277,6 +277,18 @@ MENU
           });
         }
 
+        $('.search').on('click', function(e){
+          if(menuIsOpen) {
+            e.preventDefault();
+            switchMenuView();
+          } else {
+            if(menuIsViewingIssues) {
+              switchMenuView();
+            }
+            openMenu();
+          }
+        });
+
         $('.burger').click(function(){
           if(!menuIsOpen) {
             openMenu();

@@ -1,8 +1,7 @@
 footer {
-  margin-top: auto;
-  //padding-top: 200px;
   padding-bottom: 30px;
-  margin: 0 10px;
+  padding-top: 150px;
+  margin: auto 10px 30px 10px;
 
   ul {
     list-style: none;
@@ -12,6 +11,11 @@ footer {
     li {
       a {
         color: black;
+        text-decoration: none !important;
+
+        &:hover {
+          color: black;
+        }
       }
     }
   }
@@ -21,6 +25,8 @@ footer {
     align-items: flex-end;
   }
   .social-icons {
+    margin-bottom: auto;
+
     a {
       svg {
         width: 30px;
