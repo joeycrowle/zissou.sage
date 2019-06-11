@@ -4,8 +4,7 @@
 
   .block-quote {
     h1 {
-      @extend .title-md-responsive;
-      //min-height: 800px;
+      line-height: 170%;
     }
   }
   .container {
@@ -17,7 +16,6 @@
 .block-quote-image-background {
   position: relative;
   overflow: visible;
-  //margin-bottom: 200px;
 
   .container {
     overflow: visible;
@@ -66,35 +64,8 @@
   }
 }
 
-@include media-breakpoint-up(md) {
-  .article-block-quote {
-    .block-quote {
-      h1 {
-        //min-height: 800px;
-      }
-    }
-  }
-};
-
 @include media-breakpoint-up(lg) {
   .block-quote-image-background {
     margin-bottom: 50px;
   }
 };
-
-
-@media screen and (orientation: landscape) {
-  .block-quote-image-background {
-
-    .container {
-
-    }
-    .block-quote-image-container {
-
-      img {
-        height: 120vh;
-        max-height: 700px;
-      }
-    }
-  }
-}

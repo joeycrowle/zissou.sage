@@ -1,3 +1,11 @@
 // Grid settings
 $main-sm-columns:       12;
 $sidebar-sm-columns:    4;
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1350px
+) !default;

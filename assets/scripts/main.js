@@ -340,7 +340,7 @@ CONTROL ISSUE STYLES
             //set read article button border color
             $('.article-preview').each(function(index){
               var color = $(this).find('.article-title').css('color');
-              $(this).find('.read-article').css('border', '4px solid ' + color);
+              $(this).find('.read-article').css('border', '2px solid ' + color);
             });
           }
         }

@@ -74,7 +74,7 @@ function title($style, $title) {
     <?php endif; ?>
       <div class="article-title row justify-content-center ">
         <div class="col">
-          <h1 class="font-primary" <?php echo Extras\textColour($titleColour) ?>><?php echo title($titleStyle, $title); ?></h1>
+          <h1 class="font-primary hero-title" <?php echo Extras\textColour($titleColour) ?>><?php echo title($titleStyle, $title); ?></h1>
         </div>
       </div>
     </div>
@@ -84,11 +84,11 @@ function title($style, $title) {
     <div class="<?= implode(" ", $excerptRowClasses); ?>">
       <div class="col-11 col-md-9">
         <?php if($excerpt) : ?>
-        <p class="excerpt" <?php echo Extras\textColour($excerptColour) ?>><?php echo $excerpt; ?></p>
+        <h3 class="excerpt bold" <?php echo Extras\textColour($excerptColour) ?>><?php echo $excerpt; ?></h3>
         <?php endif; ?>
         <?php if($author) : ?>
         <div class="author">
-          <p <?php echo Extras\textColour($excerptColour) ?>><?php echo $author; ?></p>
+          <h5 class="bold" <?php echo Extras\textColour($excerptColour) ?>><?php echo $author; ?></h5>
         </div>
         <?php endif; ?>
       </div>

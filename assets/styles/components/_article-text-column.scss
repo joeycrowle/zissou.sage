@@ -1,8 +1,4 @@
 .article-text-column {
   position: relative;
   z-index: 10;
-  //margin: 300px auto;
-  p {
-    @extend .copy-responsive;
-  }
 }

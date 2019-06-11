@@ -1,18 +1,7 @@
-
-
-.hero-excerpt {
-  font-weight: 600;
-  .excerpt {
-    @extend .hero-excerpt-responsive;
-  }
-}
-
-
 .title-regular {
   .article-title {
     h1 {
-      @extend .title-md-responsive;
-      line-height: 110%;
+      font-size: 5em !important;
     }
   }
 }
@@ -20,8 +9,8 @@
 .title-stack {
   .article-title {
     h1 {
-      @extend .hero-title-responsive;
       word-spacing: 99999999999pt;
+      font-size: 5em !important;
     }
   }
 }
@@ -47,10 +36,11 @@
 .title-vertical-space {
   .article-title {
     h1 {
-      @extend .hero-title-responsive;
+      font-size: 5em !important;
       line-height: 150%;
     }
   }
+
 
   @include media-breakpoint-up(sm) {
     .article-title {
@@ -75,6 +65,8 @@
   }
 }
 
+
+
 .align-excerpt-center {
   .hero-excerpt {
     text-align: center;
@@ -94,12 +86,8 @@
 }
 
 .align-excerpt-left {
-  //margin-left: 10px !important;
   .hero-excerpt {
     text-align: left;
-    .row {
-      //
-    }
   }
 }
 

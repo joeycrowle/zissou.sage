@@ -1,93 +1,33 @@
 body {
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
-  font-size: 14pt;
+  font-size: 15px;
   font-family: 'Cerebri Sans Book', sans-serif !important;
+  @include media-breakpoint-up(md) { font-size: 16px !important; };
+  @include media-breakpoint-up(lg) { font-size: 17px !important; };
+  @include media-breakpoint-up(xl) { font-size: 18px !important; };
 }
 
 
+h1 { font-size: 4.209em; }
+h2 { font-size: 3.157em; }
+h3 { font-size: 2.369em; }
+h4 { font-size: 1.777em; }
+h5 { font-size: 1.333em; }
+h6 { font-size: 1em; }
 
-
-.title-lg-responsive {
-  font-size: 46pt;
-  line-height: 170%;
-
-  @include media-breakpoint-up(md) {
-    font-size: 80pt;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: 90pt;
-  }
-
-  @media only screen and(max-height: 600px) {
-    font-size: 46pt;
-    line-height: 150%;
-  }
+p {
+  font-size: 1.1em;
+  //@include media-breakpoint-up(lg) {font-size: 1.2em !important};
 }
 
-.title-md-responsive {
-  font-size: 36pt !important;
-  line-height: 140%;
-
-  @include media-breakpoint-up(md) {
-    font-size: 60pt !important;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: 70pt !important;
-  }
-
-  @media only screen and(max-height: 600px) {
-    font-size: 46pt;
-    line-height: 150%;
-  }
+h1,h2,h3,h4,h5 {
+  line-height: 150%;
 }
 
-.copy-responsive {
-  font-size: 14pt;
-
-  @include media-breakpoint-up(md) {
-    font-size: 15pt;
-  }
-  @include media-breakpoint-up(xl) {
-    font-size: 16pt;
-  }
+.bold {
+  font-weight: 600;
 }
-
-.hero-title-responsive {
-  font-size: 46pt;
-  line-height: 170%;
-
-  @include media-breakpoint-up(sm) {
-    font-size: 60pt;
-  }
-  @include media-breakpoint-up(md) {
-    font-size: 70pt;
-  }
-
-  @media only screen and(max-height: 600px) {
-    font-size: 46pt;
-    line-height: 150%;
-  }
-}
-
-.hero-excerpt-responsive {
-  font-size: 20pt;
-
-  @include media-breakpoint-up(sm) {
-    font-size: 30pt;
-  }
-
-  @include media-breakpoint-up(md) {
-    font-size: 36pt;
-  }
-}
-
-
-
-
-
 
 a.disabled {
   pointer-events: none;

@@ -1,5 +1,5 @@
 .article-nav {
-
+  font-size: 1.1em;
   .article-nav-buttons {
     a {
       display: inline-block;
@@ -9,13 +9,13 @@
       margin-bottom: 20px;
 
 
-      h5 {
+      h6 {
         border-top: 4px solid black;
         padding-top: 10px;
-        font-size: 13pt;
+        //font-size: 13pt;
       }
       p {
-        font-size: 16pt;
+        //font-size: 16pt;
       }
     }
   }

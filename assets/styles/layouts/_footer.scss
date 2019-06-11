@@ -20,18 +20,7 @@ footer {
     }
   }
 
-  .icons {
-    display: flex;
-    align-items: flex-end;
-  }
-  .social-icons {
-    margin-bottom: auto;
-
-    a {
-      svg {
-        width: 30px;
-        height: 30px;
-      }
-    }
+  div[class*='col'] {
+    padding: 0 10px;
   }
 }
