@@ -1,7 +1,12 @@
-<?php get_template_part('templates/page', 'header'); ?>
-
-<div class="alert alert-warning">
-  <?php _e('Sorry, but the page you were trying to view does not exist.', 'sage'); ?>
-</div>
-
-<?php get_search_form(); ?>
+<article>
+  <section id="error-page">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col col-md-6 error-message">
+          <h1>Page Not Found</h1>
+          <p>This page does not exist</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</article>

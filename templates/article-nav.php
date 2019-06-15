@@ -3,7 +3,7 @@ $prevId =  mag_adjacent_article_id($post, true);
 $nextId =  mag_adjacent_article_id($post, false);
 ?>
 
-<div class="article-nav container">
+<div class="article-nav container transition">
  <div class="row justify-content-center">
    <div class="col col-sm-9 article-nav-buttons">
        <a href="<?= get_permalink($prevId) ?>">

@@ -28,7 +28,8 @@ function setup() {
   // http://codex.wordpress.org/Function_Reference/register_nav_menus
   register_nav_menus([
     'primary_navigation' => __('Primary Navigation', 'sage'),
-    'pages_navigation' => __('Pages Navigation', 'sage')
+    'pages_navigation' => __('Pages Navigation', 'sage'),
+    'social_navigation' => __('Social Navigation', 'sage')
   ]);
 
   // Enable post thumbnails
@@ -36,7 +37,7 @@ function setup() {
   // http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
   // http://codex.wordpress.org/Function_Reference/add_image_size
   add_theme_support('post-thumbnails');
-
+  add_post_type_support( 'page', 'excerpt' );
   add_theme_support('align-wide');
 
   // Enable post formats

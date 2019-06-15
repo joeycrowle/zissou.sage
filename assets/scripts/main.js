@@ -177,14 +177,14 @@ MENU
         }
 
         function headerColours(colour) {
-          $('#zissou-logo').css('fill', colour);
-          $('.burger .stroke').css('background', colour);
-          $('.search .circle').css('border-color', colour);
+          TweenLite.to('#zissou-logo', 0.2, {fill: colour});
+          TweenLite.to('.burger .stroke', 0.2, {backgroundColor: colour});
+          TweenLite.to('#search-icon .circle', 0.2, {borderColor: colour});
         }
 
         function changeTheme(header, background) {
           var classes = $('body').attr('class');
-          let useTheme = classes.match( /(single|tax-issue)/ );
+          let useTheme = classes.match( /(single|tax-issue|home)/ );
           if(useTheme) {
             if(header) {
               headerColours(issueStyle.secondary);
@@ -270,14 +270,14 @@ MENU
               }
             });
 
-          $('.search').hover(function(){
+          $('#search-icon').hover(function(){
             TweenLite.to(this, 0.2, {scale: 1.1});
           }, function(){
             TweenLite.to(this, 0.2, {scale: 1});
           });
         }
 
-        $('.search').on('click', function(e){
+        $('#search-icon').on('click', function(e){
           if(menuIsOpen) {
             e.preventDefault();
             switchMenuView();
@@ -291,15 +291,13 @@ MENU
 
         $('.burger').click(function(){
           if(!menuIsOpen) {
+            if(!menuIsViewingIssues) {
+              switchMenuView();
+            }
             openMenu();
           } else{
             closeMenu();
           }
-        });
-
-        $('.switch-view a').click(function(e){
-          e.preventDefault();
-          switchMenuView();
         });
 
         $(window).resize(function(){
@@ -383,7 +381,8 @@ INIT SCRIPTS
               });
             }
           });
-          TweenLite.to($container, 0, {opacity: 1, delay: 1.3})
+          TweenLite.to($container, 0, {opacity: 1, delay: 1.3});
+          TweenLite.to('footer', 0.4, {opacity: 1, delay: 1.3});
           setTimeout(function(){
             preloading(false);
           },1000);
@@ -399,7 +398,7 @@ INIT SCRIPTS
 
         function disableDumbLinks() {
           let location = window.location.href;
-          $('.wrap a').each(function(){
+          $('.wrap a, .nav-content a').each(function(){
             if(location.indexOf($(this).attr('href')) >= 0) {
               $(this).addClass('disabled');
             }else {
@@ -473,12 +472,14 @@ BARBA CONFIG
                 deferred.resolve();
                 preloading(true);
               }});
+              TweenLite.to('footer', 0.4, {opacity: 0});
             } else {
               TweenLite.to(this.oldContainer, 0.4, {autoAlpha: 0, onComplete: function(){
                 $('body, html').scrollTop(0);
                 deferred.resolve();
                 preloading(true);
               }});
+              TweenLite.to('footer', 0.4, {opacity: 0});
             }
 
 
