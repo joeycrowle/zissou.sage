@@ -27,7 +27,9 @@ article {
 }
 
 @include media-breakpoint-up(md) {
-  section {
-    margin-bottom: 300px !important;
+  article {
+    section {
+      margin-bottom: 300px !important;
+    }
   }
 };

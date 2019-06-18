@@ -95,9 +95,6 @@ function title($style, $title) {
         </div>
       </div>
     </div>
-
-
-
   </div>
-<?php endif; ?>
+  <?php endif; ?>
 </div>

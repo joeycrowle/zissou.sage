@@ -1,6 +1,6 @@
 <?php
 $rowClass = array('row');
-$classes = array('container', 'article-text-column');
+$classes = array('container', 'article-text-column transition-text');
 
 if($align_column == "Left") {$rowClass[] = 'justify-content-start'; $classes[] = 'align-column-left';}
 if($align_column == "Center") {$rowClass[] = 'justify-content-center'; $classes[] = 'align-column-center';}

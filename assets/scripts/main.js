@@ -300,6 +300,12 @@ MENU
           }
         });
 
+        $('.articles .preview').hover(function(){
+
+        }, function(){
+
+        });
+
         $(window).resize(function(){
           checkDimensions();
         });
@@ -334,6 +340,7 @@ CONTROL ISSUE STYLES
               $(this).find('.preview__font').css('color', fontColor);
               $(this).find('.preview__button p').css('color', fontColor);
               $(this).find('.read-article').css('border-color', fontColor + ' !important');
+
             });
             //set read article button border color
             $('.article-preview').each(function(index){
@@ -371,53 +378,38 @@ INIT SCRIPTS
 
         function pageloadAnimation($container) {
 
-          //previewTransition();
-
-          $('.preview-transition').each(function(index) {
-            $('.preview-content').css('opacity', '0');
-            let img = $(this).find('.background-img');
-            let content = $(this).find('.preview-content');
-            let title = $(this).find('.article-title');
-            let excerpt = $(this).find('.article-excerpt');
-            let button = $(this).find('.read-article');
-
-            setTimeout(() => {
-              inViewport(this, {offset: -deviceOffset}, () => {
-                TweenLite.fromTo(this, 1, {opacity: 0}, {opacity: 1});
-                TweenLite.fromTo(img, 1, {scale:1.2}, {scale: 1.1});
-                TweenLite.fromTo(content, 1, {opacity: 0}, {opacity: 1, delay: 1});
-                //TweenLite.fromTo(title, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.2});
-                //TweenLite.fromTo(excerpt, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.3});
-                //TweenLite.fromTo(button, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.4});
-              });
-            },1000);
-          });
-
-/*
-            if(inViewport(this, {offset: -deviceOffset})) {
-              TweenLite.fromTo(this, 0.86, {opacity: 0}, {opacity: 1, delay: ((index+1)/2.2)+0.8});
-              TweenLite.fromTo(img, 0.7, {rotate: 20}, {rotate: 0});
-              //TweenLite.fromTo(title, 1, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: ((index+1)/2.2)+1.5 + 0.2});
-              //TweenLite.fromTo(excerpt, 1, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: ((index+1)/2.2)+1.5 + 0.3});
-              //TweenLite.fromTo(button, 1, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: ((index+1)/2.2)+1.5 + 0.4});
-            }else {
-              $(this).css('opacity', '0');
-              inViewport(this, {offset: -deviceOffset}, () => {
-                TweenLite.fromTo(this, 0.86, {opacity: 0}, {opacity: 1});
-                TweenLite.fromTo(img, 0.4, {scale: 1.2}, {scale: 1.1});
-                //TweenLite.fromTo(title, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.2});
-                //TweenLite.fromTo(excerpt, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.3});
-                //TweenLite.fromTo(button, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.4});
-              });
-            }
-          });
-*/
-
-
           TweenLite.to($container, 0, {opacity: 1, delay: 1.3});
           TweenLite.to('footer', 0.4, {opacity: 1, delay: 1.3});
+
           setTimeout(function(){
             preloading(false);
+
+            ///TRANSITIONS
+            $('.preview-transition').each(function(index) {
+              let img = $(this).find('.background-img');
+              let content = $(this).find('.preview-content');
+              let title = $(this).find('.article-title');
+              let excerpt = $(this).find('.article-excerpt');
+              let button = $(this).find('.read-article');
+              inViewport(this, {offset: -deviceOffset}, () => {
+                TweenLite.fromTo(this, 0.5, {opacity: 0}, {opacity: 1});
+                TweenLite.fromTo(img, 2, {scale: 1.2}, {scale: 1.1, ease: Power3.easeOut});
+                TweenLite.fromTo([title, excerpt, button], 2, {opacity: 0, skewY: 2, y: 40}, {opacity: 1, skewY: 0, y: 0, delay: 0.7, ease: Power3.easeOut});
+              });
+            });
+
+            $('.transition').each(function(index) {
+              inViewport(this, {offset: -deviceOffset}, () => {
+                TweenLite.fromTo(this, 1.3, {skewY: 1, y: 35, opacity: 0}, {skewY: 0, y: 0, opacity: 1, ease: Power4.easeInOut});
+              });
+            });
+
+            $('.transition-text').each(function(index) {
+              inViewport(this, {offset: -deviceOffset}, () => {
+                TweenLite.fromTo(this, 1, {y: 0, opacity: 0}, {y: 0, opacity: 1, ease: Power3.easeInOut});
+              });
+            });
+
           },1000);
         }
 
