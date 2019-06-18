@@ -2,7 +2,7 @@ article {
   padding-bottom: 150px;
 
   section {
-    margin-bottom: 300px;
+    margin-bottom: 130px;
     margin-left: 10px;
     margin-right: 10px;
     overflow: visible;
@@ -15,7 +15,19 @@ article {
 
 .page-template-page-template-aux {
   article {
-    margin-bottom: 0;
-    padding-bottom: 0;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+
+    section {
+      &:last-child {
+        margin-bottom: 80px;
+      }
+    }
   }
 }
+
+@include media-breakpoint-up(md) {
+  section {
+    margin-bottom: 300px !important;
+  }
+};

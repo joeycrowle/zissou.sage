@@ -1,7 +1,7 @@
 <?php
 Use Roots\Sage\Extras;
 
-$classes = array("article-preview", "preview-full", "transition");
+$classes = array("article-preview", "preview-full");
 
 if (!$default_colour) {
   $classes[] = "customize";

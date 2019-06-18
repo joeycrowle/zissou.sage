@@ -76,11 +76,9 @@
 .align-excerpt-right {
   margin: 0 10px;
   .hero-excerpt {
+    text-align: right;
     .row {
       margin-right: 0;
-      div[class*='col'] {
-        padding: 0;
-      }
     }
   }
 }

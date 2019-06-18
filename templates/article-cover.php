@@ -1,8 +1,5 @@
 <?php
-
 Use Roots\Sage\Extras;
-
-
 
 $preview_vars = array(
   'permalink' => get_the_permalink(),
@@ -16,8 +13,11 @@ $preview_vars = array(
   'align_image' => get_field('align_image'),
   'blurred_background' => get_field('blurred_background'),
   'no_background' => get_field('no_background')
-);
+); ?>
 
+
+<div class="preview preview-transition">
+<?php
 switch (get_field('preview_style')) {
   case 'Full':
     Extras\get_component('components/preview_style_full_image', $preview_vars);
@@ -41,3 +41,4 @@ switch (get_field('preview_style')) {
 }
 
 ?>
+</div>

@@ -80,19 +80,24 @@ function title($style, $title) {
     </div>
   </div>
   <?php if($excerpt || $author) : ?>
-  <div data-rellax class="hero-excerpt container">
-    <div class="<?= implode(" ", $excerptRowClasses); ?>">
-      <div class="col-11 col-md-9">
-        <?php if($excerpt) : ?>
-        <h3 class="excerpt bold" <?php echo Extras\textColour($excerptColour) ?>><?php echo $excerpt; ?></h3>
-        <?php endif; ?>
-        <?php if($author) : ?>
-        <div class="author">
-          <h5 class="bold" <?php echo Extras\textColour($excerptColour) ?>><?php echo $author; ?></h5>
+  <div data-rellax class="hero-excerpt z-container">
+    <div class="inner">
+      <div class="<?= implode(" ", $excerptRowClasses); ?>">
+        <div class="col-11 col-md-9">
+          <?php if($excerpt) : ?>
+          <h3 class="excerpt bold" <?php echo Extras\textColour($excerptColour) ?>><?php echo $excerpt; ?></h3>
+          <?php endif; ?>
+          <?php if($author) : ?>
+          <div class="author">
+            <h5 class="bold" <?php echo Extras\textColour($excerptColour) ?>><?php echo $author; ?></h5>
+          </div>
+          <?php endif; ?>
         </div>
-        <?php endif; ?>
       </div>
     </div>
+
+
+
   </div>
 <?php endif; ?>
 </div>

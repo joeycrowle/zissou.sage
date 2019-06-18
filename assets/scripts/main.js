@@ -366,21 +366,54 @@ INIT SCRIPTS
             }
           }
           issueStyle = $('fields').data();
-
           changeTheme(true, true);
         }
 
         function pageloadAnimation($container) {
-          $('.transition').each(function(index) {
+
+          //previewTransition();
+
+          $('.preview-transition').each(function(index) {
+            $('.preview-content').css('opacity', '0');
+            let img = $(this).find('.background-img');
+            let content = $(this).find('.preview-content');
+            let title = $(this).find('.article-title');
+            let excerpt = $(this).find('.article-excerpt');
+            let button = $(this).find('.read-article');
+
+            setTimeout(() => {
+              inViewport(this, {offset: -deviceOffset}, () => {
+                TweenLite.fromTo(this, 1, {opacity: 0}, {opacity: 1});
+                TweenLite.fromTo(img, 1, {scale:1.2}, {scale: 1.1});
+                TweenLite.fromTo(content, 1, {opacity: 0}, {opacity: 1, delay: 1});
+                //TweenLite.fromTo(title, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.2});
+                //TweenLite.fromTo(excerpt, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.3});
+                //TweenLite.fromTo(button, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.4});
+              });
+            },1000);
+          });
+
+/*
             if(inViewport(this, {offset: -deviceOffset})) {
-              TweenLite.fromTo(this, 0.86, {opacity: 0, y: 20, skewY:2}, {opacity: 1, y: 0, skewY: 0, delay: ((index+1)/2.2)+0.8});
+              TweenLite.fromTo(this, 0.86, {opacity: 0}, {opacity: 1, delay: ((index+1)/2.2)+0.8});
+              TweenLite.fromTo(img, 0.7, {rotate: 20}, {rotate: 0});
+              //TweenLite.fromTo(title, 1, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: ((index+1)/2.2)+1.5 + 0.2});
+              //TweenLite.fromTo(excerpt, 1, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: ((index+1)/2.2)+1.5 + 0.3});
+              //TweenLite.fromTo(button, 1, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: ((index+1)/2.2)+1.5 + 0.4});
             }else {
               $(this).css('opacity', '0');
               inViewport(this, {offset: -deviceOffset}, () => {
-                TweenLite.fromTo(this, 0.86, {opacity: 0, y: 20, skewY:2}, {opacity: 1, y: 0, skewY: 0});
+                TweenLite.fromTo(this, 0.86, {opacity: 0}, {opacity: 1});
+                TweenLite.fromTo(img, 0.4, {scale: 1.2}, {scale: 1.1});
+                //TweenLite.fromTo(title, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.2});
+                //TweenLite.fromTo(excerpt, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.3});
+                //TweenLite.fromTo(button, 0.8, {opacity: 0, skewY: 2, y: 50}, {opacity: 1, skewY: 0, y: 0, delay: 0.4});
               });
             }
           });
+*/
+
+
           TweenLite.to($container, 0, {opacity: 1, delay: 1.3});
           TweenLite.to('footer', 0.4, {opacity: 1, delay: 1.3});
           setTimeout(function(){
@@ -510,29 +543,7 @@ BARBA CONFIG
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
-        //TweenLite.set('html', 0.3, {opacity: 1});
 
-
-        /*
-        if(!Modernizr.touchevents) {
-          var scrollbar = Scrollbar.init(document.querySelector('.wrap'), {
-            damping: 0.08,
-            plugins: {
-              scrollPlugin: {}
-            }
-          });
-        }
-        */
-
-/*
-        $(window).on('scroll', function(){
-          if($(window).scrollTop() > 100) {
-            TweenLite.to('header', 0.5, {y: -100});
-          } else {
-            TweenLite.to('header', 0.5, {y: 0});
-          }
-        });
-*/
       }
     },
     // Home page

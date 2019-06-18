@@ -1,22 +1,17 @@
 .page-aux-content {
-  margin-top: 250px;
+  margin-top: 140px;
 
   .page-title {
     text-align: left;
     h1 {
-      //@extend .title-md-responsive;
       line-height: 110% !important;
-      //word-spacing: 999999pt;
       display: inline-block;
-      //font-size: 40pt;
-      //border-bottom: 4px solid black;
     }
   }
+}
 
-  .page-content {
-    margin-top: 100px;
-    p {
-      //@extend .copy-responsive;
-    }
+@include media-breakpoint-up(md) {
+  .page-aux-content {
+    margin-top: 250px !important;
   }
 }
