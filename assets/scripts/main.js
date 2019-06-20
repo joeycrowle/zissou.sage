@@ -55,7 +55,7 @@ PRELOADER
 
         function preloading(bool) {
           if(bool) {
-            console.log('preloading...');
+            //console.log('preloading...');
             $('#global-preloader').css('display', 'block');
             TweenLite.fromTo('#global-preloader', 0.4, {opacity: 0, y: 30}, {opacity: 1, y: 0});
             preloader.goToAndPlay(0);
@@ -77,8 +77,6 @@ BODYMOVIN
         autoplay: true,
         animationData: window.preloaderAnimation
       });
-
-      console.log(preloader);
 
 /*~~~~~~~~~~~~~~~~~
 MENU
@@ -350,8 +348,6 @@ CONTROL ISSUE STYLES
           }
         }
 
-
-
 /*~~~~~~~~~~~~~~~~~
 INIT SCRIPTS
 ~~~~~~~~~~~~~~~~~*/
@@ -445,7 +441,7 @@ INIT SCRIPTS
         }
 
         function initialize(){
-          console.log('initialize');
+          //console.log('initialize');
             if(!initialized){firstLoad()}
             bodyClasses();
             checkIssue();

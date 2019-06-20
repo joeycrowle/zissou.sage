@@ -10,7 +10,6 @@ $style = $image_group['style'];
 $alignImage = $image_group['align'];
 $backgroundColour = $image_group['background_colour'];
 $heroImgId = $image_group['image']['id'];
-$heroImg2Id = $image_group['image_2']['id'];
 //excerpt group
 $excerptPosition = $excerpt_group['position'];
 $excerptColour = $excerpt_group['colour'];

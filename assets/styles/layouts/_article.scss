@@ -33,3 +33,11 @@ article {
     }
   }
 };
+
+article {
+  &:first-child {
+    .article-block-quote {
+      //padding: 0 0 150px 0;
+    }
+  }
+}

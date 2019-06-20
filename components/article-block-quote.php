@@ -2,9 +2,9 @@
 Use Roots\Sage\Extras;
 
 $backgroundStyle = $background['background'];
-$backgroundImage = $background['background_image'];
+//$backgroundImage = $background['background_image'];
 $backgroundColour = $background['background_colour'];
-$backgroundPosition = $background['align_image'];
+//$backgroundPosition = $background['align_image'];
 $classes = array('article-block-quote transition');
 $rowClass = array('row');
 $fontClass = array();
@@ -17,10 +17,10 @@ if($background['background'] == "Colour") { $classes[] = 'block-quote-color-back
 if($background['background'] == "None") { $classes[] = 'block-quote-no-background'; }
 if($container) { $classes[] = 'container'; }
 
-if($backgroundPosition == "Far Left") { $classes[] = 'image-stuck-left'; }
-if($backgroundPosition == "Far Right") { $classes[] = 'image-stuck-right'; }
-if($backgroundPosition == "Left") { $classes[] = 'image-left'; }
-if($backgroundPosition == "Right") { $classes[] = 'image-right'; }
+//if($backgroundPosition == "Far Left") { $classes[] = 'image-stuck-left'; }
+//if($backgroundPosition == "Far Right") { $classes[] = 'image-stuck-right'; }
+//if($backgroundPosition == "Left") { $classes[] = 'image-left'; }
+//if($backgroundPosition == "Right") { $classes[] = 'image-right'; }
 
 if($issue_font) {$fontClass[] = 'font-primary';}
 ?>

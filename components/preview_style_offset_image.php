@@ -18,9 +18,9 @@
 
 ?>
 
-<a class="<?= implode(" ", $classes) ?>" href="<?= $permalink ?>" <?php Extras\colorAttributes($default_colour, $font_colour, $background_colour); ?> >
+<div class="<?= implode(" ", $classes) ?>" <?php Extras\colorAttributes($default_colour, $font_colour, $background_colour); ?> >
   <div class="preview-img-container">
     <?php echo $article_image; ?>
   </div>
-  <?php Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt)); ?>
-</a>
+  <?php Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt, 'permalink'=>$permalink)); ?>
+</div>

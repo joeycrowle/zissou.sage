@@ -17,13 +17,13 @@ if($no_background) {
 }
 ?>
 
-<a class="<?= implode(" ", $classes) ?>" href="<?= $permalink ?>" <?php Extras\colorAttributes($default_colour, $font_colour, $background_colour); ?> >
+<div class="<?= implode(" ", $classes) ?>" <?php Extras\colorAttributes($default_colour, $font_colour, $background_colour); ?> >
   <?php if($blurred_background) : ?>
     <div class="preview-background-img obj-fit">
       <?php echo $article_image; ?>
     </div>
   <?php endif;
-  Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt));
+  Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt, 'permalink'=>$permalink));
   ?>
 
   <div class="preview-image-container obj-fit">
@@ -31,4 +31,4 @@ if($no_background) {
   </div>
 
 
-</a>
+</div>

@@ -16,12 +16,6 @@
   &:first-child {
     max-height: 100vh !important;
   }
-
-  &:hover {
-    .read-article {
-      border-color: rgba(0,0,0,0) !important;
-    }
-  }
 }
 
 .preview-content {
@@ -36,7 +30,6 @@
   z-index: 1;
   .article-title {
     color: white;
-    //font-size: 30pt;
   }
 
   .article-excerpt {
@@ -51,16 +44,20 @@
     //border set with previewSetColors()
     border-width: 2px;
     border-style: solid;
+    text-decoration: none;
 
     p {
       margin: 0;
       padding: 10px;
       line-height: 16pt;
       transition: padding .2s ease-out;
+      color: white;
+    }
+    &:hover {
+      border-color: rgba(0,0,0,0) !important;
     }
   }
 }
-
 
 @include media-breakpoint-up(md) {
   .article-excerpt {
@@ -68,12 +65,10 @@
   }
 }
 
-
 @import "preview-full";
 @import "preview-offset";
 @import "preview-cropped";
 @import "preview-none";
-
 
 .no-background {
   background: rgba(0,0,0,0) !important;

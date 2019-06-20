@@ -175,3 +175,22 @@
     pointer-events: none !important;
   }
 }
+
+.issue-container {
+  &:first-child {
+    a.disabled {
+      opacity: 1 !important;
+    }
+  }
+}
+
+.issue-container {
+  &:not(:first-child) {
+    a.disabled {
+      opacity: 1 !important;
+      h6,h5,p {
+        color: rgba(255,255,255, 0.5);
+      }
+    }
+  }
+}
