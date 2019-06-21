@@ -4,12 +4,29 @@
 
   .block-quote {
     h1 {
+      font-size: 2em;
       line-height: 170%;
+      word-break: break-word;
     }
   }
   .container {
     overflow: visible;
   }
+
+  @include media-breakpoint-up (md) {
+    .block-quote {
+      h1 {
+        font-size: 3em;
+      }
+    }
+  };
+  @include media-breakpoint-up(lg) {
+    .block-quote {
+      h1 {
+        font-size: 4em;
+      }
+    }
+  };
 }
 
 
