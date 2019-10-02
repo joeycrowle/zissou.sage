@@ -1,0 +1,11 @@
+.masthead {
+  margin: 120px auto;
+
+  .contributor {
+    &:not(:first-child) {
+      margin-top: 100px;
+    }
+  }
+
+
+}

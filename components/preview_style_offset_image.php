@@ -22,5 +22,11 @@
   <div class="preview-img-container">
     <?php echo $article_image; ?>
   </div>
-  <?php Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt, 'permalink'=>$permalink)); ?>
+  <?php Extras\get_component('templates/preview-content', array(
+    'title' => $title, 
+    'excerpt' => $excerpt,
+    'permalink' => $permalink,
+    'read_time' => $read_time
+  )
+); ?>
 </div>

@@ -1,7 +1,7 @@
 .hero-full {
   .hero {
     width: 100vw;
-    height: 120vh;
+    height: 100vh;
 
     .hero-image {
       width: 100%;
@@ -17,6 +17,8 @@
 }
 
 .hero-aligned {
+
+
   .hero {
     padding-left: 30px;
   }
@@ -28,6 +30,8 @@
   .hero-image {
     margin-top: 56.5px;
     height: 100vw !important;
+    max-height: 100vh;
+    
     img {
       position: absolute;
       height: 100%;

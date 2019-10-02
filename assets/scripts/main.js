@@ -36,6 +36,7 @@ VARS
           }
         };
         var menuIsOpen = false;
+        var searchIsActive = false;
         const headerHeight = $('header').outerHeight();
         const headerDefaultColour = $('header .inner').css('background-color');
         const headerTransitionOffset = $(window).innerHeight()*0.15;
@@ -82,7 +83,7 @@ BODYMOVIN
 MENU
 ~~~~~~~~~~~~~~~~~*/
 
-        var menuIsViewingIssues = true;
+        var menuIsViewingMasthead = true;
 
         const burgerDefault = {
           stroke1: {
@@ -177,7 +178,9 @@ MENU
         function headerColours(colour) {
           TweenLite.to('#zissou-logo', 0.2, {fill: colour});
           TweenLite.to('.burger .stroke', 0.2, {backgroundColor: colour});
-          TweenLite.to('#search-icon .circle', 0.2, {borderColor: colour});
+          TweenLite.to('.search-bar', 0.2, {borderColor: colour});
+          TweenLite.to('.search-path', 0.2, {stroke: colour});
+          TweenLite.to('.input-container #s', 0.2, {color: colour});
         }
 
         function changeTheme(header, background) {
@@ -201,12 +204,12 @@ MENU
         }
 
         function switchMenuView() {
-          if(menuIsViewingIssues) {
+          if(menuIsViewingMasthead) {
             TweenLite.to('.recent-issues', .5, {opacity: 0, onComplete(){
               $('.recent-issues').css('display', 'none');
               $('.pages').css('display', 'block');
               TweenLite.fromTo('.pages', 1, {opacity: 0, y: 30, skewY: 1}, {opacity: 1, skewY: 0, scaleY: 1, y: 0});
-              menuIsViewingIssues = !menuIsViewingIssues;
+              menuIsViewingMasthead = !menuIsViewingMasthead;
               toggleMenuViewBtn();
             }});
           } else {
@@ -214,7 +217,7 @@ MENU
               $('.recent-issues').css('display', 'block');
               $('.pages').css('display', 'none');
               TweenLite.fromTo('.recent-issues', 1, {opacity: 0, y: 30, skewY: 1}, {opacity: 1, skewY: 0, scaleY: 1, y: 0});
-              menuIsViewingIssues = !menuIsViewingIssues;
+              menuIsViewingMasthead = !menuIsViewingMasthead;
               toggleMenuViewBtn();
             }});
           }
@@ -267,29 +270,38 @@ MENU
                 burgerDef();
               }
             });
-
-          $('#search-icon').hover(function(){
-            TweenLite.to(this, 0.2, {scale: 1.1});
-          }, function(){
-            TweenLite.to(this, 0.2, {scale: 1});
-          });
         }
 
-        $('#search-icon').on('click', function(e){
-          if(menuIsOpen) {
-            e.preventDefault();
-            switchMenuView();
-          } else {
-            if(menuIsViewingIssues) {
-              switchMenuView();
-            }
-            openMenu();
+
+
+        $('.search-bar').on('click', function(){
+          if(!searchIsActive) {
+
+            TweenLite.to(this, 0.4, {width: 160, onComplete: function(){
+              $('.search-bar #s').css({
+                'display': 'inline',
+              });
+              TweenLite.to('.search-bar #s', 0.2, {opacity: 1});
+              searchIsActive = true;
+            }});
+            $(this).find('label').css('pointer-events', 'all');
           }
         });
 
+        $(document).on('click',function(e){
+          if(searchIsActive && e.target.id !== 's'){
+            $('.search-bar label').css('pointer-events', 'none');
+            TweenLite.to('.search-bar #s', 0.2, {opacity: 0, onComplete: function(){
+              searchIsActive = false;
+              $('.search-bar #s').css('display', 'none');
+              TweenLite.to('.search-bar', 0.4, {width: 36});
+            }})
+          }
+        })
+
         $('.burger').click(function(){
           if(!menuIsOpen) {
-            if(!menuIsViewingIssues) {
+            if(!menuIsViewingMasthead) {
               switchMenuView();
             }
             openMenu();
@@ -297,6 +309,12 @@ MENU
             closeMenu();
           }
         });
+
+        $(window).on('keypress', function(e) {
+          if(e.key == 't') {
+            switchMenuView();
+          }
+        })
 
         $('.articles .preview').hover(function(){
 
@@ -434,14 +452,15 @@ INIT SCRIPTS
         }
 
         function initRellax() {
-          var rellax = new Rellax('.rellax', {
-            speed: -2,
-            center: true
-          });
+          if($('.rellax').length > 0) {
+            var rellax = new Rellax('.rellax', {
+              speed: -2,
+              center: true
+            });
+          }
         }
 
         function initialize(){
-          //console.log('initialize');
             if(!initialized){firstLoad()}
             bodyClasses();
             checkIssue();
@@ -473,6 +492,7 @@ OBJECT FIT POLYFIL
 /*~~~~~~~~~~~~~~~~~
 BARBA CONFIG
 ~~~~~~~~~~~~~~~~~*/
+
 
         Barba.Pjax.start();
 
@@ -523,6 +543,7 @@ BARBA CONFIG
         Barba.Pjax.getTransition = function() {
           return PageTransition;
         };
+
 
 /*~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~

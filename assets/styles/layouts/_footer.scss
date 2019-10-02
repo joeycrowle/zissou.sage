@@ -1,5 +1,5 @@
 footer {
-  padding: 80px 0 40px 0;
+  padding: 80px 0 100px 0;
   margin-top: auto;
 
   ul {
@@ -70,5 +70,35 @@ footer {
 .home, .tax-issue {
   footer {
     display: none;
+  }
+}
+
+
+.social-sticky-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  //text-align: center;
+  z-index: 98;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ul {
+    //display: inline-block;
+    //margin: 0 auto;
+    margin-bottom: 0;
+    list-style: none;
+    padding: 10px 0;
+
+    li {
+      display: inline-block;
+    }
+
+    svg {
+      width: 50px;
+      height: 50px;
+      padding: 10px;
+    }
   }
 }

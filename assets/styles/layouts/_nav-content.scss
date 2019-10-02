@@ -3,6 +3,7 @@
   flex-direction: column;
   color: white;
   padding-top: 20px;
+  height: 100%;
 
   a {
     color: white;
@@ -15,7 +16,7 @@
     flex: 1;
     overflow-y: auto;
 
-    .recent-issues {
+    .recent-issues, .masthead {
       margin: auto;
 
       .issue-container {
@@ -33,7 +34,7 @@
           margin-bottom: 25px;
 
           .current-issue-heading {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
           }
         }
 
@@ -58,12 +59,17 @@
           padding-top: 10px;
 
           .current-issue-title {
-            margin-bottom: 30px;
+            padding: 0;
+            margin-bottom: 0 !important;
           }
 
           h4 {
             color: white;
           }
+        }
+
+        .issue-no-x {
+          margin-bottom: 50px;
         }
       }
     }
@@ -119,7 +125,7 @@
         display: block !important;
       }
 
-      .recent-issues {
+      .recent-issues, .masthead {
         .issue-container {
           &:first-child {
             .issue-description {
@@ -138,7 +144,7 @@
 
 
 
-              h6 {
+              .issue-title {
                 padding-top: 10px;
                 border-top: 4px solid white;
               }
@@ -193,4 +199,34 @@
       }
     }
   }
+}
+
+
+.masthead {
+  .masthead-group {
+    margin-top: 40px;
+
+    h6 {
+      font-size: 0.86em;
+    }
+
+    p {
+      margin: 0 !important;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    .masthead-group {
+      margin-top: 25px;
+      margin-bottom: 60px;
+
+    }
+
+    .issue-container {
+      &:last-child {
+        .issue {
+          border-bottom: 0 !important;
+        }
+      }
+    }
+  };
 }

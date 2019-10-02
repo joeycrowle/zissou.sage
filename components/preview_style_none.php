@@ -11,6 +11,12 @@ if (!$default_colour) {
 
 <div class="<?= implode(" ", $classes) ?>" <?php Extras\colorAttributes($default_colour, $font_colour, $background_colour); ?> >
   <?php
-  Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt, 'permalink'=>$permalink));
+  Extras\get_component('templates/preview-content', array(
+    'title' => $title, 
+    'excerpt' => $excerpt,
+    'permalink' => $permalink,
+    'read_time' => $read_time
+  )
+);
  ?>
 </div>

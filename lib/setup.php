@@ -134,3 +134,16 @@ add_filter('upload_mimes', __NAMESPACE__ . '\\mime_types', 1, 1);
 
 
 define('CONCATENATE_SCRIPTS', false);
+
+
+//ACF OPTIONS PAGE
+
+$options_page_settings = array(
+  'page_title' => __('Masthead'),
+  'menu_title' => __('Masthead'),
+  'menu_slug' => __('masthead'),
+  'capability' => 'edit_posts',
+  'icon_url' => 'dashicons-editor-kitchensink'
+);
+
+acf_add_options_page($options_page_settings);

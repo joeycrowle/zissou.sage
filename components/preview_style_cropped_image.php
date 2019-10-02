@@ -23,7 +23,13 @@ if($no_background) {
       <?php echo $article_image; ?>
     </div>
   <?php endif;
-  Extras\get_component('templates/preview-content', array('title'=>$title, 'excerpt' => $excerpt, 'permalink'=>$permalink));
+  Extras\get_component('templates/preview-content', array(
+    'title' => $title, 
+    'excerpt' => $excerpt,
+    'permalink' => $permalink,
+    'read_time' => $read_time
+  )
+);
   ?>
 
   <div class="preview-image-container obj-fit">

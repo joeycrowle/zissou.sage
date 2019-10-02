@@ -9,8 +9,8 @@
 
       <a class="brand" href="<?= esc_url(home_url('/')); ?>"><?php get_template_part('templates/logo'); ?></a>
 
-      <div id="search-icon" class="search">
-        <div class="circle"></div>
+      <div class="search-bar">
+        <?php get_template_part('templates/search-form'); ?>
       </div>
     </div>
 

@@ -27,12 +27,15 @@ use Roots\Sage\Wrapper;
           </div>
         </main><!-- /.main -->
       </div><!-- /.content -->
-      <?php
 
+
+
+      <?php
         do_action('get_footer');
         get_template_part('templates/footer');
         wp_footer();
       ?>
     </div><!-- /.wrap -->
+    <?php get_template_part('components/social-sticky-footer'); ?>
   </body>
 </html>

@@ -27,8 +27,13 @@ if($style == "Full") {$classes[] = 'hero-full';}
 if($style == "Aligned") { $classes[] = 'hero-aligned'; };
 if($style == "Double") { $classes[] = 'hero-double'; };
 if($style == "None") { $classes[] = 'hero-none'; };
-if($alignImage == "Left") { $classes[] = 'hero-align-left'; };
-if($alignImage == "Right") { $classes[] = 'hero-align-right'; };
+
+if($style !== "Full"){
+  if($alignImage == "Left") { $classes[] = 'hero-align-left'; };
+  if($alignImage == "Right") { $classes[] = 'hero-align-right'; };
+}
+
+
 if($titleStyle == "Regular") { $classes[] = 'title-regular'; };
 if($titleStyle == "Stack") { $classes[] = 'title-stack'; };
 if($titleStyle == "Duplicated") { $classes[] = 'title-duplicated'; };
