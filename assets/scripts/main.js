@@ -314,6 +314,13 @@ MENU
           if(e.key == 't') {
             switchMenuView();
           }
+        });
+
+        $('.masthead-button').on('click', function(){
+          switchMenuView();
+        })
+        $('.close-masthead-button').on('click', function(){
+          switchMenuView();
         })
 
         $('.articles .preview').hover(function(){

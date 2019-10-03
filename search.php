@@ -1,15 +1,29 @@
-<?php get_template_part('templates/page', 'header'); ?>
+<?php
+  Use Roots\Sage\Extras;
 
-<?php if (!have_posts()) : ?>
-  <div class="alert alert-warning">
-    <?php _e('Sorry, no results were found.', 'sage'); ?>
+
+ ?>
+
+<div class="container search-results">
+  <div class="row search-title">
+    <div class="col">
+      <h4><?php echo 'Search Results For: ' . get_search_query(); ?></h4>
+    </div>
   </div>
-  <?php get_search_form(); ?>
-<?php endif; ?>
 
 
-<?php while (have_posts()) : the_post(); ?>
-  <?php get_template_part('templates/content', 'search'); ?>
-<?php endwhile; ?>
 
-<?php the_posts_navigation(); ?>
+  <?php if (!have_posts()) : ?>
+    <div class="row">
+      <div class="col">
+        <h6>Sorry, No results found for: <?php echo get_search_query(); ?></h6>
+      </div>
+    </div>
+  <?php endif; ?>
+
+
+  <?php while (have_posts()) : the_post(); ?>
+    <?php get_template_part('templates/content', 'search'); ?>
+  <?php endwhile; ?>
+
+</div>

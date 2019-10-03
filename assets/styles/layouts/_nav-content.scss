@@ -230,3 +230,17 @@
     }
   };
 }
+
+.masthead-button {
+  cursor: pointer;
+}
+
+.close-masthead-button {
+  text-align: center;
+  margin-bottom: 25px;
+
+  p {
+    display: inline;
+    cursor: pointer;
+  }
+}

@@ -43,7 +43,7 @@ function isNew($recentIssues, $numOfIssues) {
           </a>
         </div>
         <div class="issue-container">
-          <a href="#" class="issue">
+          <a class="issue masthead-button">
             <h5 class="issue-title">Masthead</h5>
               <p class="issue-description"><?php echo wp_trim_words($mastheadExcerpt, 10, '...'); ?></p>
           </a>
@@ -84,6 +84,10 @@ function isNew($recentIssues, $numOfIssues) {
                 <h4 class="font-primary current-issue-title"><?php echo $issue['name'] ?></h4>
                 <h6 class="issue-no-x">Issue No. <?php echo $currentIssue ?></h6>
             </div>
+          </div>
+
+          <div class="close-masthead-button">
+            <p>Close</p>
           </div>
 
 

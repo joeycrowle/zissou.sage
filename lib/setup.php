@@ -3,6 +3,7 @@
 namespace Roots\Sage\Setup;
 
 use Roots\Sage\Assets;
+use Roots\Sage\Extras;
 
 /**
  * Theme setup
@@ -147,3 +148,30 @@ $options_page_settings = array(
 );
 
 acf_add_options_page($options_page_settings);
+
+
+//EXCERPT CONTENT FOR RELEVANSSI
+function custom_fields_to_excerpts($content, $post, $query) {
+
+  $content = '';
+  if(have_rows('rows', $post->ID)) : while(have_rows('rows', $post->ID)) : the_row();
+    if(get_sub_field('excerpt')['excerpt']){ $content .= wp_strip_all_tags(get_sub_field('excerpt')['excerpt']); }
+    if(get_sub_field('text', false, false)){ $content .= wp_strip_all_tags(get_sub_field('text')); }
+  endwhile;endif;
+  return $content;
+}
+
+add_filter('relevanssi_excerpt_content', __NAMESPACE__ . '\\custom_fields_to_excerpts', 10, 3);
+
+
+
+//MODIFY NUMBER OF RESULTS SHOWN
+function postsperpage($limits) {
+	if (is_search()) {
+		global $wp_query;
+		$wp_query->query_vars['posts_per_page'] = -1;
+	}
+	return $limits;
+}
+
+add_filter('post_limits', __NAMESPACE__ . '\\postsperpage');
