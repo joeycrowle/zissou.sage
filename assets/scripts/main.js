@@ -310,11 +310,6 @@ MENU
           }
         });
 
-        $(window).on('keypress', function(e) {
-          if(e.key == 't') {
-            switchMenuView();
-          }
-        });
 
         $('.masthead-button').on('click', function(){
           switchMenuView();
