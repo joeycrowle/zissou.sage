@@ -30,7 +30,7 @@ function isNew($recentIssues, $numOfIssues) {
         <div class="issue-container">
           <a href="<?= $url ?>" class="issue">
               <h5 class="current-issue-heading">Current Issue</h5>
-
+              
               <h4 class="font-primary current-issue-title"><?php echo $issue['name'] ?></h4>
               <h6 class="issue-no-x">Issue No. <?php echo $currentIssue ?></h6>
               <p class="issue-description"><?php echo $issue['description'] ?></p>

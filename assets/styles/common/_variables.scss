@@ -3,9 +3,17 @@ $main-sm-columns:       12;
 $sidebar-sm-columns:    4;
 
 $grid-breakpoints: (
+  //14pt
+  /*
     xs: 0,
     sm: 576px,
     md: 768px,
     lg: 992px,
     xl: 1350px
+  */
+  xs: 0,
+  sm: 36em,
+  md: 48em,
+  lg: 57em,
+  xl: 84em
 ) !default;
