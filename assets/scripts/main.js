@@ -547,6 +547,20 @@ BARBA CONFIG
         };
 
 
+        //ANALYTICS
+        Barba.Dispatcher.on('initStateChange', function() {
+          if (typeof ga === 'function') {
+            var path = (window.location.href).replace(window.location.origin, '').toLowerCase();
+            gtag('js', new Date());
+            gtag('config', 'UA-167307743-1', {
+              'anonymize_ip': true, // for GDPR
+              'page_title' : document.title,
+              'page_path': path
+            });
+          }
+        })
+
+
 /*~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~*/
